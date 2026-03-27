@@ -1,4 +1,4 @@
-This is a [Portfolio](https:/princepal.dev) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Portfolio site for **Anubhav Tandon**, built with [Next.js](https://nextjs.org/) (`create-next-app`).
 
 ## Getting Started
 
@@ -6,12 +6,8 @@ First, run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+Configure `NEXT_PUBLIC_SITE_URL` and `GEMINI_API_KEY` as described in `.env.example` for production.

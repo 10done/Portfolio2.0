@@ -16,7 +16,7 @@ const qdrantClient = new QdrantClient({
   apiKey: QDRANT_API_KEY || undefined,
 });
 
-const COLLECTION_NAME = "prince_portfolio";
+const COLLECTION_NAME = "anubhav_portfolio";
 const VECTOR_SIZE = 768;
 const CHUNK_SIZE = 500;
 
@@ -258,7 +258,7 @@ const testSearch = async (): Promise<void> => {
   try {
     console.log(`\n🧪 Testing search functionality...`);
 
-    const testQuery = "What are Prince's technical skills?";
+    const testQuery = "What are Anubhav's technical skills?";
     console.log(`   Query: "${testQuery}"`);
 
     const embeddingModel = genAI.getGenerativeModel({

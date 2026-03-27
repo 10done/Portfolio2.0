@@ -36,7 +36,7 @@ export default function FloatingNav() {
   const socialLinks: SocialLink[] = [
     {
       icon: FileText,
-      href: "https://drive.google.com/file/d/1WqTkhB67OVBvYehFXRqTgI-Z0pMsfro5/view?usp=sharing",
+      href: "https://drive.google.com/file/d/1qBtYoEXa94XjI7i1m7bSzXvLFHU9VBj4/view?usp=sharing",
       label: "Resume",
     },
     {
