@@ -69,10 +69,10 @@ export const metadata: Metadata = {
     siteName: "Anubhav Tandon Portfolio",
     images: [
       {
-        url: new URL("/og-image.png", siteUrl).toString(),
+        url: new URL("/profile.jpg", siteUrl).toString(),
         width: 1200,
-        height: 630,
-        alt: "Anubhav Tandon Portfolio Preview",
+        height: 1200,
+        alt: "Anubhav Tandon",
       },
     ],
     locale: "en_US",
@@ -84,7 +84,7 @@ export const metadata: Metadata = {
     title: "Anubhav Tandon | Software Engineer & Full Stack Developer",
     description:
       "Portfolio of Anubhav Tandon showcasing full-stack web development, backend engineering, and DevOps projects.",
-    images: [new URL("/og-image.png", siteUrl).toString()],
+    images: [new URL("/profile.jpg", siteUrl).toString()],
   },
 
   robots: {
