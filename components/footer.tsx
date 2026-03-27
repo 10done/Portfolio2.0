@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Eye } from "lucide-react";
 
 export default function Footer() {
   const [mounted, setMounted] = useState(false);
@@ -48,14 +47,6 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Visitor Counter */}
-        <div className="inline-flex items-center gap-3 px-5 py-3 rounded-full bg-zinc-900/80 border border-zinc-800">
-          <Eye className="w-4 h-4 text-zinc-400" />
-          <span className="text-zinc-400 text-sm">
-            You are the <VisitorBadge /> visitor
-          </span>
-        </div>
-
         {/* Credits */}
         <div className="text-center space-y-1">
           <p className="text-sm text-zinc-500">
@@ -67,55 +58,5 @@ export default function Footer() {
         </div>
       </div>
     </footer>
-  );
-}
-
-function VisitorBadge() {
-  const [count, setCount] = useState<number | null>(null);
-
-  useEffect(() => {
-    async function fetchCount() {
-      const storageKey = "visitor_counted_footer";
-      const lastVisit = localStorage.getItem(storageKey);
-      const now = Date.now();
-      const ONE_MINUTE = 60 * 1000;
-      const sessionExpired = !lastVisit || (now - parseInt(lastVisit, 10)) > ONE_MINUTE;
-
-      if (sessionExpired) {
-        // Try increment first. If it fails (e.g. DB unavailable), fall back to GET.
-        const postRes = await fetch("/api/visitors", { method: "POST" });
-        if (postRes.ok) {
-          const postData = await postRes.json();
-          if (typeof postData.views === "number") {
-            setCount(postData.views);
-            localStorage.setItem(storageKey, now.toString());
-            return;
-          }
-        }
-      }
-
-      const getRes = await fetch("/api/visitors");
-      if (getRes.ok) {
-        const getData = await getRes.json();
-        if (typeof getData.views === "number") {
-          setCount(getData.views);
-          return;
-        }
-      }
-
-      // Final safe fallback so UI never crashes in development.
-      setCount(0);
-    }
-    fetchCount().catch(() => setCount(0));
-  }, []);
-
-  if (count === null) {
-    return <span className="text-zinc-300 font-bold animate-pulse">...</span>;
-  }
-
-  return (
-    <span className="text-zinc-100 font-bold">
-      {count.toLocaleString()}<sup className="text-xs">th</sup>
-    </span>
   );
 }
