@@ -6,7 +6,9 @@ import Footer from "@/components/footer";
 import { ThemeProvider } from "@/components/theme-provider";
 import ChatInterfaceWrapper from "@/components/chat-interface-wrapper";
 import { GoogleAnalytics } from "@/components/google-analytics";
+import { getSiteUrl } from "@/lib/site";
 
+const siteUrl = getSiteUrl();
 
 const inter = Inter({
   subsets: ["latin"],
@@ -24,7 +26,7 @@ export const metadata: Metadata = {
     "Portfolio of Anubhav Tandon — Software Engineer & Full Stack Developer specializing in Django, React, Node.js, DevOps, and scalable cloud systems. B.Tech CSE at IIT Jodhpur.",
   applicationName: "Anubhav Tandon Portfolio",
   category: "Portfolio",
-  metadataBase: new URL("https://10done.github.io/Portfolio/"),
+  metadataBase: new URL(siteUrl),
 
   keywords: [
     "Anubhav Tandon",
@@ -45,7 +47,7 @@ export const metadata: Metadata = {
     "Cloud Infrastructure",
   ],
 
-  authors: [{ name: "Anubhav Tandon", url: "https://10done.github.io/Portfolio/" }],
+  authors: [{ name: "Anubhav Tandon", url: siteUrl }],
   creator: "Anubhav Tandon",
   publisher: "Anubhav Tandon",
 
@@ -63,11 +65,11 @@ export const metadata: Metadata = {
     title: "Anubhav Tandon | Software Engineer & Full Stack Developer",
     description:
       "Portfolio of Anubhav Tandon showcasing full-stack web development, backend engineering, DevOps, and cloud infrastructure projects.",
-    url: "https://10done.github.io/Portfolio/",
+    url: siteUrl,
     siteName: "Anubhav Tandon Portfolio",
     images: [
       {
-        url: "/og-image.png",
+        url: new URL("/og-image.png", siteUrl).toString(),
         width: 1200,
         height: 630,
         alt: "Anubhav Tandon Portfolio Preview",
@@ -82,7 +84,7 @@ export const metadata: Metadata = {
     title: "Anubhav Tandon | Software Engineer & Full Stack Developer",
     description:
       "Portfolio of Anubhav Tandon showcasing full-stack web development, backend engineering, and DevOps projects.",
-    images: ["/og-image.png"],
+    images: [new URL("/og-image.png", siteUrl).toString()],
   },
 
   robots: {
@@ -150,19 +152,19 @@ export default function RootLayout({
               "@graph": [
                 {
                   "@type": "WebSite",
-                  "@id": "https://10done.github.io/Portfolio/#website",
-                  "url": "https://10done.github.io/Portfolio/",
+                  "@id": `${siteUrl}/#website`,
+                  "url": siteUrl,
                   "name": "Anubhav Tandon Portfolio",
                   "description": "Portfolio of Anubhav Tandon — Software Engineer & Full Stack Developer",
-                  "publisher": { "@id": "https://10done.github.io/Portfolio/#person" },
+                  "publisher": { "@id": `${siteUrl}/#person` },
                   "inLanguage": "en-US"
                 },
                 {
                   "@type": "Person",
-                  "@id": "https://10done.github.io/Portfolio/#person",
+                  "@id": `${siteUrl}/#person`,
                   "name": "Anubhav Tandon",
-                  "url": "https://10done.github.io/Portfolio/",
-                  "image": "https://10done.github.io/Portfolio/profile.png",
+                  "url": siteUrl,
+                  "image": `${siteUrl}/profile.png`,
                   "jobTitle": "Software Engineer & Full Stack Developer",
                   "description": "Software Engineer and B.Tech CSE student at IIT Jodhpur specializing in full-stack development, backend engineering, and DevOps.",
                   "sameAs": [

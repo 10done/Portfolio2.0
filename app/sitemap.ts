@@ -1,6 +1,7 @@
 import { MetadataRoute } from 'next'
+import { getSiteUrl } from '@/lib/site'
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://10done.github.io/Portfolio/'
+const baseUrl = getSiteUrl()
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // Static pages
