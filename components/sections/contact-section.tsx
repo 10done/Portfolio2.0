@@ -40,14 +40,14 @@ export default function ContactSection() {
         description="Have a project in mind or just want to chat? I'd love to hear from you."
       />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:items-start">
         {/* Left Column — Contact Links */}
         <motion.div
           initial={{ opacity: 0, x: -15 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="space-y-4"
+          className="space-y-4 min-w-0"
         >
           <p className="text-sm text-muted-foreground leading-relaxed">
             Open for freelance work, full-time roles, and interesting
@@ -89,25 +89,31 @@ export default function ContactSection() {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1 }}
+          className="min-w-0 w-full"
         >
-          <div className="rounded-xl bg-card border border-border/40 p-5">
+          <div className="rounded-xl bg-card border border-border/40 p-5 min-w-0 overflow-hidden">
             <h3 className="text-sm font-semibold mb-4 flex items-center gap-2 text-foreground">
-              <MessageSquare className="w-4 h-4 text-primary/70" />
+              <MessageSquare className="w-4 h-4 text-primary/70 shrink-0" />
               Send a Message
             </h3>
             <p className="text-sm text-muted-foreground mb-4">
               Click below to open Gmail directly and send me an email.
             </p>
-            <div className="flex flex-col sm:flex-row gap-3">
-              <a href={gmailComposeUrl} target="_blank" rel="noopener noreferrer" className="flex-1">
-                <Button size="sm" className="w-full rounded-lg font-semibold gap-2">
-                  <Send className="w-3.5 h-3.5" />
+            <div className="flex flex-col gap-3">
+              <a
+                href={gmailComposeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block w-full min-w-0"
+              >
+                <Button size="sm" className="w-full max-w-full rounded-lg font-semibold gap-2 justify-center">
+                  <Send className="w-3.5 h-3.5 shrink-0" />
                   Open Gmail
                 </Button>
               </a>
-              <a href="mailto:anubhavtandon6424@gmail.com" className="flex-1">
-                <Button size="sm" variant="outline" className="w-full rounded-lg font-semibold gap-2">
-                  <Mail className="w-3.5 h-3.5" />
+              <a href="mailto:anubhavtandon6424@gmail.com" className="block w-full min-w-0">
+                <Button size="sm" variant="outline" className="w-full max-w-full rounded-lg font-semibold gap-2 justify-center whitespace-normal text-center h-auto py-2.5">
+                  <Mail className="w-3.5 h-3.5 shrink-0" />
                   Use Default Mail App
                 </Button>
               </a>
