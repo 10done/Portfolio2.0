@@ -1,10 +1,9 @@
-import { QdrantClient } from "@qdrant/js-client-rest";
-import OpenAI from "openai";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 import { NextRequest, NextResponse } from "next/server";
 import { experiences, projects, skillCategories, profileData } from "@/data";
 
 // Environment variables
-const { OPENAI_API_KEY, QDRANT_URL, QDRANT_API_KEY } = process.env;
+const { GEMINI_API_KEY } = process.env;
 
 // Type definitions
 interface Message {
@@ -22,35 +21,7 @@ interface ApiResponse {
   role: "assistant";
 }
 
-// Initialize clients safely
-let openai: OpenAI ;
-let qdrantClient: QdrantClient;
-
-// Safe initialization function
-function initializeClients() {
-  try {
-    if (!OPENAI_API_KEY) {
-      console.warn("OPENAI_API_KEY not configured");
-      return;
-    }
-    openai = new OpenAI({ apiKey: OPENAI_API_KEY });
-    
-    if (QDRANT_URL) {
-      qdrantClient = new QdrantClient({
-        url: QDRANT_URL,
-        apiKey: QDRANT_API_KEY || undefined,
-      });
-    }
-    console.log("AI clients initialized successfully");
-  } catch (error) {
-    console.error("Failed to initialize clients:", error);
-  }
-}
-
-// Initialize on module load
-if (typeof window === "undefined") {
-  initializeClients();
-}
+const genAI = GEMINI_API_KEY ? new GoogleGenerativeAI(GEMINI_API_KEY) : null;
 
 // Prepare local data as context
 function prepareLocalData(): string {
@@ -104,92 +75,6 @@ function generateId(): string {
     const v = c === "x" ? r : (r & 0x3) | 0x8;
     return v.toString(16);
   });
-}
-
-// Helper function to split text into chunks
-function splitIntoChunks(text: string, chunkSize: number): string[] {
-  const chunks: string[] = [];
-  const sentences = text.split(". ");
-  let currentChunk = "";
-
-  for (const sentence of sentences) {
-    if (currentChunk.length + sentence.length < chunkSize) {
-      currentChunk += sentence + ". ";
-    } else {
-      if (currentChunk.trim()) {
-        chunks.push(currentChunk.trim());
-      }
-      currentChunk = sentence + ". ";
-    }
-  }
-
-  if (currentChunk.trim()) {
-    chunks.push(currentChunk.trim());
-  }
-
-  return chunks;
-}
-
-// Initialize Qdrant collection
-async function initializeQdrantCollection(): Promise<void> {
-  if (!qdrantClient) return;
-
-  try {
-    const collectionName = "anubhav_portfolio";
-
-    try {
-      await qdrantClient.getCollection(collectionName);
-      console.log("Collection already exists");
-      return; // Already initialized
-    } catch (error) {
-      await qdrantClient.createCollection(collectionName, {
-        vectors: {
-          size: 1536, // OpenAI text-embedding-3-small dimension
-          distance: "Cosine",
-        },
-      });
-      console.log("Collection created successfully");
-    }
-
-    const localContext = prepareLocalData();
-    const chunks = splitIntoChunks(localContext, 500);
-
-    if (!openai) {
-      console.error("OpenAI client not available for embedding");
-      return;
-    }
-
-    for (let i = 0; i < chunks.length; i++) {
-      try {
-        const embeddingResponse = await openai.embeddings.create({
-          model: "text-embedding-3-small",
-          input: chunks[i],
-        });
-        const vector = embeddingResponse.data[0].embedding;
-
-        if (!qdrantClient) {
-          console.error("Qdrant client not available for upsert");
-          return;
-        }
-
-        await qdrantClient.upsert(collectionName, {
-          wait: true,
-          points: [
-            {
-              id: `chunk_${i}`,
-              vector: vector,
-              payload: { text: chunks[i], chunk_id: i },
-            },
-          ],
-        });
-        console.log(`Uploaded chunk ${i + 1}/${chunks.length}`);
-      } catch (error) {
-        console.error(`Failed to upload chunk ${i}:`, error);
-      }
-    }
-  } catch (error) {
-    console.error("Failed to initialize Qdrant collection:", error);
-  }
 }
 
 function getSmartFallback(question: string): string {
@@ -279,7 +164,7 @@ Want details about specific roles or achievements?`;
 • **Professional Experience** - ${experiences.length}+ roles at top companies
 • **Projects** - ${projects.length}+ innovative applications
 • **Skills** - Expertise across ${skillCategories.length} technical domains
-• **Contact Info** - How to reach Prince
+• **Contact Info** - How to reach Anubhav
 
 What would you like to know?`;
 }
@@ -293,11 +178,11 @@ function createJsonResponse(data: ApiResponse, status = 200): NextResponse {
 
 export async function POST(req: NextRequest): Promise<NextResponse> {
   try {
-    if (!openai || !qdrantClient) {
+    if (!genAI) {
       return createJsonResponse(
         {
           id: generateId(),
-          content: "Server configuration error. Please contact support.",
+          content: "Server configuration error. Set GEMINI_API_KEY to enable chat.",
           role: "assistant",
         },
         500
@@ -338,45 +223,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
       });
     }
 
-    let docContext = "";
-
-    // Get context from Qdrant or local data
-    try {
-      if (!openai) {
-        throw new Error("OpenAI client not initialized");
-      }
-
-      await waitForRateLimit();
-
-      const embeddingResponse = await openai.embeddings.create({
-        model: "text-embedding-3-small",
-        input: latestMessage,
-      });
-      const queryVector = embeddingResponse.data[0].embedding;
-
-      if (!qdrantClient) {
-        throw new Error("Qdrant client not initialized");
-      }
-
-      const searchResult = await qdrantClient.search("anubhav_portfolio", {
-        vector: queryVector,
-        limit: 5,
-        with_payload: true,
-      });
-
-      if (searchResult.length > 0) {
-        docContext = searchResult
-          .map((result) => (result.payload as { text: string })?.text || "")
-          .filter((text) => text.trim())
-          .join("\n\n");
-      }
-    } catch (error) {
-      console.log("Using local data fallback:", error);
-    }
-
-    if (!docContext.trim()) {
-      docContext = prepareLocalData();
-    }
+    const docContext = prepareLocalData();
 
     const conversationHistory = messages
       .slice(-5)
@@ -395,26 +242,30 @@ INSTRUCTIONS:
 4. If the question is about something NOT in the portfolio data, politely say you don't have that information and suggest related topics you CAN help with
 5. Use emojis sparingly (1-2 per response) for a friendly tone
 6. Keep responses concise but informative (2-4 paragraphs max)
-7. If asked general questions like "tell me about Prince" or "what can you do", give a brief overview highlighting key strengths`;
+7. If asked general questions like "tell me about Anubhav" or "what can you do", give a brief overview highlighting key strengths`;
 
     try {
       await waitForRateLimit();
 
-      const completion = await openai.chat.completions.create({
-        model: "gpt-4o-mini", // Using GPT-4o-mini for cost-effectiveness
-        messages: [
-          { role: "system", content: systemPrompt },
-          ...messages.slice(-5).map((m) => ({
-            role: m.role,
-            content: m.content,
-          })),
-        ],
-        max_tokens: 1000,
-        temperature: 0.7,
-        top_p: 0.9,
+      const model = genAI.getGenerativeModel({
+        model: "gemini-1.5-flash",
+        generationConfig: {
+          temperature: 0.7,
+          topP: 0.9,
+          maxOutputTokens: 1000,
+        },
       });
 
-      const responseText = completion.choices[0]?.message?.content || "";
+      const prompt = `${systemPrompt}
+
+RECENT CONVERSATION:
+${conversationHistory}
+
+User: ${latestMessage}
+Assistant:`;
+
+      const completion = await model.generateContent(prompt);
+      const responseText = completion.response.text() || "";
 
       // Basic validation - check if response is too short or generic
       if (responseText.length < 50) {
@@ -466,7 +317,3 @@ INSTRUCTIONS:
   }
 }
 
-// Initialize collection on server startup
-if (typeof window === "undefined") {
-  initializeQdrantCollection().catch(console.error);
-}
