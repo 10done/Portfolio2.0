@@ -26,7 +26,7 @@ export const profileData: ProfileData = {
   location: "IIT Jodhpur, Rajasthan, India",
   avatar: "/profile.jpg",
   resume:
-    "https://drive.google.com/file/d/1qBtYoEXa94XjI7i1m7bSzXvLFHU9VBj4/view?usp=sharing",
+    "https://drive.google.com/file/d/1ibK8cxmOMIW_PnUY15kVBDUqbnsFHN-O/view?usp=drive_link",
   socialLinks: [
     {
       platform: "GitHub",
