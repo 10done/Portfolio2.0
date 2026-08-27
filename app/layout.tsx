@@ -69,7 +69,7 @@ export const metadata: Metadata = {
     siteName: "Anubhav Tandon Portfolio",
     images: [
       {
-        url: new URL("/profile.jpg", siteUrl).toString(),
+        url: new URL("/og-image.jpg", siteUrl).toString(),
         width: 1200,
         height: 1200,
         alt: "Anubhav Tandon",
@@ -84,7 +84,7 @@ export const metadata: Metadata = {
     title: "Anubhav Tandon | Software Engineer & Full Stack Developer",
     description:
       "Portfolio of Anubhav Tandon showcasing full-stack web development, backend engineering, and DevOps projects.",
-    images: [new URL("/profile.jpg", siteUrl).toString()],
+    images: [new URL("/og-image.jpg", siteUrl).toString()],
   },
 
   robots: {
@@ -164,7 +164,7 @@ export default function RootLayout({
                   "@id": `${siteUrl}/#person`,
                   "name": "Anubhav Tandon",
                   "url": siteUrl,
-                  "image": `${siteUrl}/profile.png`,
+                  "image": `${siteUrl}/profile.jpg`,
                   "jobTitle": "Software Engineer & Full Stack Developer",
                   "description": "Software Engineer and B.Tech CSE student at IIT Jodhpur specializing in full-stack development, backend engineering, and DevOps.",
                   "sameAs": [
