@@ -20,61 +20,12 @@ export default function GitHubSection() {
 
     const fetchContributions = useCallback(async () => {
         try {
-            const now = new Date();
-            const currentYear = now.getFullYear();
-            const previousYear = currentYear - 1;
+            // Rolling last 12 months; this API already returns { date, count, level }
+            const res = await fetch(`${githubConfig.apiUrl}/${githubConfig.username}?y=last`);
+            if (!res.ok) throw new Error("Failed to fetch");
 
-            // Fetch both years to cover March-to-March range
-            const [resCurrent, resPrevious] = await Promise.all([
-                fetch(`${githubConfig.apiUrl}/${githubConfig.username}.json?y=${currentYear}`),
-                fetch(`${githubConfig.apiUrl}/${githubConfig.username}.json?y=${previousYear}`),
-            ]);
-
-            if (!resCurrent.ok || !resPrevious.ok) throw new Error("Failed to fetch");
-
-            const [dataCurrent, dataPrevious] = await Promise.all([
-                resCurrent.json(),
-                resPrevious.json(),
-            ]);
-
-            const levelMap: Record<string, number> = {
-                NONE: 0,
-                FIRST_QUARTILE: 1,
-                SECOND_QUARTILE: 2,
-                THIRD_QUARTILE: 3,
-                FOURTH_QUARTILE: 4,
-            };
-
-            const flatten = (contributions: { date: string; contributionCount: number; contributionLevel: string }[][]) =>
-                contributions
-                    .flat()
-                    .map((c) => ({
-                        date: c.date,
-                        count: c.contributionCount,
-                        level: levelMap[c.contributionLevel] ?? 0,
-                    }));
-
-            const allContributions: ContributionDay[] = [
-                ...flatten(dataPrevious.contributions),
-                ...flatten(dataCurrent.contributions),
-            ];
-
-            // Filter to May previous year – March current year
-            const startDate = `${previousYear}-05-01`;
-            const endDate = `${currentYear}-03-31`;
-
-            // Deduplicate by date (prefer later entry) and filter range
-            const dateMap = new Map<string, ContributionDay>();
-            for (const c of allContributions) {
-                if (c.date >= startDate && c.date <= endDate) {
-                    dateMap.set(c.date, c);
-                }
-            }
-
-            // Sort by date and set
-            const filtered = Array.from(dateMap.values()).sort(
-                (a, b) => a.date.localeCompare(b.date)
-            );
+            const data: { contributions: ContributionDay[] } = await res.json();
+            const filtered = data.contributions;
 
             setContributions(filtered);
         } catch {

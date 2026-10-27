@@ -18,13 +18,19 @@ import SectionHeader from "@/components/section-header";
 // Show top 4 projects on homepage
 const featuredProjects = projects.slice(0, 4);
 
+// Header backgrounds for projects without a screenshot
+const headerGradients = [
+  "from-orange-600 via-rose-600 to-purple-700",
+  "from-sky-600 via-indigo-600 to-violet-700",
+];
+
 export default function ProjectsSection() {
   return (
     <SectionContainer id="projects">
       <SectionHeader
         label="Projects"
         title="Featured Projects"
-        description="A showcase of selected projects."
+        description="Production AI products I've built end to end, plus selected earlier work."
       />
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         {featuredProjects.map((project, index) => (
@@ -37,15 +43,29 @@ export default function ProjectsSection() {
               >
                 <Card className="overflow-hidden h-full flex flex-col hover:shadow-lg hover:border-primary/20 transition-all duration-300 group bg-card border-border/40">
                   {/* Image */}
-                  {project.image && (
                     <div className="h-40 overflow-hidden relative w-full shrink-0">
-                      <Image
-                        src={project.image}
-                        alt={project.title}
-                        fill
-                        className="object-cover transition-transform duration-500 group-hover:scale-105"
-                        sizes="(max-width: 768px) 100vw, 50vw"
-                      />
+                      {project.image ? (
+                        <Image
+                          src={project.image}
+                          alt={project.title}
+                          fill
+                          className="object-cover transition-transform duration-500 group-hover:scale-105"
+                          sizes="(max-width: 768px) 100vw, 50vw"
+                        />
+                      ) : (
+                        <div
+                          className={`absolute inset-0 flex flex-col justify-center px-5 bg-gradient-to-br ${headerGradients[index % headerGradients.length]}`}
+                        >
+                          <span className="text-2xl font-bold tracking-tight text-white">
+                            {project.title}
+                          </span>
+                          {project.subtitle && (
+                            <span className="text-xs text-white/80 mt-1 max-w-[85%]">
+                              {project.subtitle}
+                            </span>
+                          )}
+                        </div>
+                      )}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
                       {/* Action icons overlay */}
@@ -90,15 +110,33 @@ export default function ProjectsSection() {
                         </Badge>
                       </div>
                     </div>
-                  )}
 
                   <CardContent className="p-4 flex-1 flex flex-col gap-2">
                     <h3 className="text-sm font-bold group-hover:text-primary transition-colors line-clamp-1">
                       {project.title}
                     </h3>
-                    <p className="text-xs text-muted-foreground line-clamp-3 leading-relaxed flex-1">
+                    {project.status && (
+                      <span className="w-fit -mt-1 text-[10px] uppercase tracking-wider font-semibold px-1.5 py-0.5 rounded bg-muted/60 text-muted-foreground">
+                        {project.status}
+                      </span>
+                    )}
+                    <p className="text-xs text-muted-foreground line-clamp-4 leading-relaxed">
                       {project.description}
                     </p>
+                    {project.highlights && project.highlights.length > 0 && (
+                      <ul className="space-y-1">
+                        {project.highlights.map((highlight) => (
+                          <li
+                            key={highlight}
+                            className="text-[11px] text-foreground/80 pl-3.5 relative leading-snug"
+                          >
+                            <span className="absolute left-0.5 top-1.5 w-1 h-1 bg-emerald-500/70 rounded-full" />
+                            {highlight}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                    <div className="flex-1" />
 
                     {/* Tech icons */}
                     <TooltipProvider delayDuration={0}>

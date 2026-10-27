@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
+import { profileData } from "@/data/profile";
 interface SocialLink {
   icon: LucideIcon;
   href: string;
@@ -36,7 +37,7 @@ export default function FloatingNav() {
   const socialLinks: SocialLink[] = [
     {
       icon: FileText,
-      href: "https://drive.google.com/file/d/1ibK8cxmOMIW_PnUY15kVBDUqbnsFHN-O/view?usp=drive_link",
+      href: profileData.resume ?? "",
       label: "Resume",
     },
     {

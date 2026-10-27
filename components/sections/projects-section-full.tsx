@@ -29,11 +29,20 @@ export default function ProjectsSectionFull() {
                                     <FadeIn key={index} delay={0.05 * index} direction="up">
                                         <Card className="overflow-hidden h-full flex flex-col hover:shadow-lg transition-all duration-300 hover:border-slate-200/30 group">
                                             <div className="h-48 overflow-hidden relative">
-                                                <img
-                                                    src={project.image}
-                                                    alt={project.title}
-                                                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                                                />
+                                                {project.image ? (
+                                                    <img
+                                                        src={project.image}
+                                                        alt={project.title}
+                                                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                                    />
+                                                ) : (
+                                                    <div className="w-full h-full flex flex-col justify-center px-6 bg-gradient-to-br from-orange-600 via-rose-600 to-purple-700">
+                                                        <span className="text-2xl font-bold text-white">{project.title}</span>
+                                                        {project.subtitle && (
+                                                            <span className="text-xs text-white/80 mt-1">{project.subtitle}</span>
+                                                        )}
+                                                    </div>
+                                                )}
                                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                                             </div>
                                             <CardContent className="p-6 flex-1">
@@ -54,6 +63,11 @@ export default function ProjectsSectionFull() {
                                                                     : "Mobile"}
                                                     </Badge>
                                                 </div>
+                                                {project.status && (
+                                                    <span className="inline-block mb-2 text-[10px] uppercase tracking-wider font-semibold px-1.5 py-0.5 rounded bg-muted/60 text-muted-foreground">
+                                                        {project.status}
+                                                    </span>
+                                                )}
                                                 <p className="text-muted-foreground text-sm mb-4 line-clamp-3">
                                                     {project.description}
                                                 </p>

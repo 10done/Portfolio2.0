@@ -19,14 +19,14 @@ export interface ProfileData {
 
 export const profileData: ProfileData = {
   name: "Anubhav Tandon",
-  tagline: "Software Engineer | Full Stack Developer | B.Tech CSE @ IIT Jodhpur",
-  bio: "Passionate about building scalable systems and web applications. CS undergrad at IIT Jodhpur with experience in full-stack development, DevOps, and cloud infrastructure.",
+  tagline: "AI Engineer | Full-Stack Software Engineer | Founder @ Plate8 | IIT Jodhpur CSE",
+  bio: "AI Engineer and Full-Stack Software Engineer (Python, TypeScript, React, Next.js, FastAPI) and IIT Jodhpur CSE graduate. Founder of Plate8, an AI restaurant operations platform with 3 restaurants in pilot. Builds production LLM applications end to end: AI agents with tool calling, RAG, speech-to-text, LLM evals and multi-tenant backends on AWS.",
   email: "anubhavtandon6424@gmail.com",
   phone: "+91-9805464134",
-  location: "IIT Jodhpur, Rajasthan, India",
+  location: "Jodhpur, Rajasthan, India",
   avatar: "/profile.jpg",
   resume:
-    "https://drive.google.com/file/d/1ibK8cxmOMIW_PnUY15kVBDUqbnsFHN-O/view?usp=drive_link",
+    "https://drive.google.com/file/d/135J6bj34Uj0DcAXtX49iLw7rwfCUWVm1/view?usp=sharing",
   socialLinks: [
     {
       platform: "GitHub",

@@ -3,11 +3,14 @@ export interface Experience {
   company: string;
   link?: string;
   role: string;
-  type: "fulltime" | "intern" | "contract";
+  type: "fulltime" | "intern" | "contract" | "founder";
+  location: string;
   duration: string;
   startDate: string;
   endDate: string;
   description: string;
+  // Headline numbers shown as chips on the card
+  metrics?: string[];
   achievements?: string[];
   technologies?: string[];
   logo?: string;
@@ -16,38 +19,63 @@ export interface Experience {
 export const experiences: Experience[] = [
   {
     id: "1",
+    company: "Plate8",
+    link: "https://plate8.io",
+    role: "Founder",
+    type: "founder",
+    location: "India",
+    duration: "May 2026 – Present",
+    startDate: "2026-05",
+    endDate: "present",
+    description:
+      "AI back-of-house operating system for Indian restaurants: voice-driven inventory, stock tracking and demand forecasting.",
+    metrics: ["3 pilot restaurants", "−30% food wastage", "460+ automated tests"],
+    achievements: [
+      "Founded Plate8 and built the product end to end; onboarded 3 restaurants, currently under pilot, using it for daily inventory counts and stock tracking",
+      "Lowered food wastage by 30% at pilot restaurants through efficient demand and stock forecasts",
+      "Built a multilingual (Hindi, Punjabi, English) voice inventory pipeline: speech-to-text, LLM extraction with Claude Haiku, item matching and confidence scoring, targeting 90%+ line accuracy and under 3 s p95 latency at ~INR 145 per outlet per month",
+      "Built Walter, an AI agent on the Anthropic Messages API with tool calling; every model and tool call is traced with cost and latency, and quality is measured by offline eval suites",
+      "Designed a multi-tenant FastAPI + PostgreSQL backend with row-level security, an append-only stock ledger and event outbox, plus a React Native (Expo) app and Next.js dashboard",
+    ],
+    technologies: ["Python", "FastAPI", "PostgreSQL", "Celery", "Redis", "React Native", "Next.js", "Claude API", "AWS", "Terraform"],
+  },
+  {
+    id: "2",
     company: "Skyportal.ai & Oblivus Cloud",
-    role: "Software Engineer",
+    role: "Software Engineer (Contract)",
     type: "contract",
+    location: "Los Angeles, California (Remote)",
     duration: "Jul 2025 – Jan 2026",
     startDate: "2025-07",
     endDate: "2026-01",
     description:
-      "Backend engineering & DevOps for GPU cloud infrastructure serving enterprise AI workloads",
+      "Backend engineering & DevOps for GPU cloud infrastructure serving enterprise AI workloads.",
+    metrics: ["~25% lower API latency", "Sub-200 ms dashboards", "Deploys: hours → <15 min"],
     achievements: [
-      "Architected and maintained Django (Python) + raw PHP backend services in production; optimized database queries and introduced caching layers, improving average API latency by ~25%",
-      "Built low-latency front-end dashboards with HTMX & vanilla JavaScript for GPU cluster management, achieving sub-200ms page loads",
-      "Automated CI/CD pipelines and infrastructure provisioning via Ansible, Terraform, virsh/libvirt, reducing deployment cycles from hours to under 15 minutes",
-      "Configured and optimized NVIDIA H100/H200 GPU clusters to accelerate AI model training and inference workloads for enterprise clients",
-      "Led root-cause analysis and coordinated cross-functional post-mortems for production incidents, measurably reducing mean-time-to-recovery (MTTR)",
+      "Built and maintained Python (Django) and PHP backend services and REST APIs in production; optimized SQL queries and added caching, cutting API latency by ~25%",
+      "Built front-end dashboards with HTMX and JavaScript for GPU cluster management, achieving sub-200 ms page loads",
+      "Automated CI/CD and infrastructure provisioning with Ansible, Terraform and libvirt, cutting deployment time from hours to under 15 minutes",
+      "Led root-cause analysis and post-mortems for production incidents, reducing MTTR; worked directly with enterprise clients on deployment issues",
     ],
     technologies: ["Django", "Python", "PHP", "HTMX", "Ansible", "Terraform", "Linux", "Docker"],
     logo: "/company/skyportal_ai_logo.jpeg",
   },
   {
-    id: "2",
+    id: "3",
     company: "Open Science Labs",
     role: "Software Development Intern",
     type: "intern",
+    location: "USA (Remote)",
     duration: "May 2025 – Jul 2025",
     startDate: "2025-05",
     endDate: "2025-07",
-    description: "Virtual science lab with 10 interactive experiments; 30%+ student engagement increase",
+    description: "Interactive virtual science lab and secure in-browser code execution for an open education platform.",
+    metrics: ["10 interactive experiments", "+30% student engagement"],
     achievements: [
-      "Designed and shipped a modular virtual science lab featuring 10 interactive HTML5 Canvas experiments (5 physics, 5 chemistry), increasing student engagement by 30%+",
-      "Integrated an SRI-protected Ace Editor with custom stdin handling and client-side rate limiting into a Django app via the Piston API for secure, multi-language code execution",
+      "Shipped a virtual lab of 10 interactive HTML5 Canvas experiments in JavaScript, raising student engagement by 30%+",
+      "Integrated a code editor with stdin handling and rate limiting into a Django app via the Piston API for secure multi-language code execution",
     ],
-    technologies: ["Django", "HTML5 Canvas", "JavaScript", "Piston API", "Python"],
+    technologies: ["Django", "Python", "JavaScript", "HTML5 Canvas", "Piston API"],
     logo: "/company/open-science-labs-logo.png",
   },
 ];

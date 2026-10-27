@@ -22,10 +22,13 @@ const techStack = [
     { name: "Node.js", icon: techIcons["Node.js"], color: "#339933" },
     { name: "NestJS", icon: techIcons["NestJS"], color: "#dc1308" },
     { name: "FastAPI", icon: techIcons["FastAPI"], color: "#009688" },
+    { name: "Django", icon: techIcons["Django"], color: "#44B78B" },
     { name: "Express.js", icon: techIcons["Express.js"], color: "#888" },
 
     // AI & ML
+    { name: "Claude API", icon: techIcons["Claude API"], color: "#D97757" },
     { name: "OpenAI", icon: techIcons["OpenAI"], color: "#412991" },
+    { name: "Gemini", icon: techIcons["Gemini"], color: "#8E75B2" },
     { name: "LangChain", icon: techIcons["LangChain"], color: "#1C3C3C" },
     { name: "Hugging Face", icon: techIcons["Hugging Face"], color: "#FF9D00" },
     { name: "PyTorch", icon: techIcons["PyTorch"], color: "#EE4C2C" },
@@ -34,12 +37,17 @@ const techStack = [
     // Databases & Cloud
     { name: "PostgreSQL", icon: techIcons["PostgreSQL"], color: "#336791" },
     { name: "MongoDB", icon: techIcons["MongoDB"], color: "#47A248" },
+    { name: "Redis", icon: techIcons["Redis"], color: "#DC382D" },
+    { name: "Celery", icon: techIcons["Celery"], color: "#37814A" },
     { name: "Supabase", icon: techIcons["Supabase"], color: "#3ECF8E" },
     { name: "Firebase", icon: techIcons["Firebase"], color: "#FFCA28" },
 
     // DevOps & Tools
     { name: "Docker", icon: techIcons["Docker"], color: "#2496ED" },
     { name: "AWS", icon: techIcons["AWS"], color: "#FF9900" },
+    { name: "Google Cloud", icon: techIcons["Google Cloud"], color: "#4285F4" },
+    { name: "Terraform", icon: techIcons["Terraform"], color: "#844FBA" },
+    { name: "Ansible", icon: techIcons["Ansible"], color: "#EE0000" },
     { name: "Git", icon: techIcons["Git"], color: "#F05032" },
     { name: "GraphQL", icon: techIcons["GraphQL"], color: "#E10098" },
     { name: "gRPC", icon: techIcons["gRPC"], color: "#2786eb" },
@@ -53,6 +61,7 @@ const techStack = [
     { name: "Tailwind CSS", icon: techIcons["Tailwind CSS"], color: "#06B6D4" },
     { name: "Socket.io", icon: techIcons["Socket.io"], color: "#fff" },
     { name: "Postman", icon: techIcons["Postman"], color: "#FF6C37" },
+    { name: "pytest", icon: techIcons["pytest"], color: "#0A9EDC" },
 ].filter((t) => t.icon); // filter out any undefined icons
 
 export default function TechStackSection() {

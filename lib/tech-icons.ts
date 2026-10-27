@@ -43,10 +43,35 @@ import {
     SiGithubactions,
     SiClerk,
     SiGooglemaps,
+    SiClaude,
+    SiDjango,
+    SiTerraform,
+    SiAnsible,
+    SiCelery,
+    SiAmazonwebservices,
+    SiPytest,
+    SiHtmx,
+    SiPhp,
+    SiSqlalchemy,
+    SiGooglecloud,
 } from "react-icons/si";
 import { FaServer, FaRobot, FaAnchor, FaMobileAlt, FaDatabase, FaCode, FaShieldAlt, FaTerminal } from "react-icons/fa";
 
 export const techIcons: Record<string, any> = {
+    // Added for the Oct 2026 resume refresh
+    "Claude API": SiClaude,
+    "Claude": SiClaude,
+    "Django": SiDjango,
+    "Terraform": SiTerraform,
+    "Ansible": SiAnsible,
+    "Celery": SiCelery,
+    "Amazon Bedrock": SiAmazonwebservices,
+    "pytest": SiPytest,
+    "HTMX": SiHtmx,
+    "PHP": SiPhp,
+    "SQLAlchemy": SiSqlalchemy,
+    "Google Cloud": SiGooglecloud,
+
     // Languages
     "TypeScript": SiTypescript,
     "JavaScript": SiJavascript,

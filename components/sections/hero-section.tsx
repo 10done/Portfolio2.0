@@ -9,11 +9,10 @@ import SectionContainer from "@/components/section-container";
 import { useState } from "react";
 import {
   MapPin,
-  Briefcase,
-  Clock,
+  GraduationCap,
+  Rocket,
   Mail,
   FileText,
-  Phone,
 } from "lucide-react";
 import { SiGithub, SiLinkedin } from "react-icons/si";
 import { profileData } from "@/data/profile";
@@ -41,12 +40,16 @@ const socialIcons = [
 ];
 
 const stats = [
-  { icon: MapPin, label: "IIT Jodhpur, India" },
-  { icon: Briefcase, label: "B.Tech CSE, May 2026" },
-  { icon: Clock, label: "Open to work" },
+  { icon: Rocket, label: "Founder @ Plate8" },
+  { icon: GraduationCap, label: "B.Tech CSE, IIT Jodhpur '26" },
+  { icon: MapPin, label: "Jodhpur, India · Open to remote" },
 ];
 
 const highlightBadges = [
+  {
+    label: "AI Agents & LLM Evals",
+    color: "bg-orange-500/15 text-orange-400 border-orange-500/30",
+  },
   {
     label: "Full Stack",
     color: "bg-blue-500/20 text-blue-400 border-blue-500/30",
@@ -59,6 +62,14 @@ const highlightBadges = [
     label: "IIT Jodhpur CSE",
     color: "bg-green-500/20 text-green-400 border-green-500/30",
   },
+];
+
+// Headline numbers from the resume, shown as a quick-scan strip for recruiters
+const impactMetrics = [
+  { value: "3", label: "restaurants piloting Plate8" },
+  { value: "30%", label: "less food wastage at pilots" },
+  { value: "1,100+", label: "automated tests shipped" },
+  { value: "Top 1%", label: "JEE Advanced 2022 (~1.2M)" },
 ];
 
 export default function HeroSection() {
@@ -131,10 +142,10 @@ export default function HeroSection() {
               <p className="text-base sm:text-lg text-muted-foreground font-medium">
                 <Typewriter
                   words={[
-                    "Software Engineer",
-                    "Full Stack Developer",
-                    "Backend Engineer",
-                    "CS @ IIT Jodhpur",
+                    "AI Engineer",
+                    "Full-Stack Software Engineer",
+                    "Founder @ Plate8",
+                    "IIT Jodhpur CSE",
                   ]}
                   loop={true}
                   cursor
@@ -190,14 +201,24 @@ export default function HeroSection() {
         {/* Bio */}
         <motion.div variants={itemVariants} className="space-y-3">
           <p className="text-sm text-muted-foreground leading-relaxed max-w-xl">
-            I build full-stack web applications and scalable backend systems with a focus on{" "}
+            I build production LLM applications end to end:{" "}
             <span className="text-foreground font-medium">
-              real-world impact
+              AI agents with tool calling
             </span>
-            . Passionate about{" "}
-            <span className="text-foreground font-medium">AI</span>,{" "}
-            <span className="text-foreground font-medium">DevOps automation</span>,
-            cloud infrastructure, and practical software engineering.
+            , RAG, speech-to-text,{" "}
+            <span className="text-foreground font-medium">LLM evals</span> and
+            multi-tenant backends on AWS. Founder of{" "}
+            <a
+              href="https://plate8.io"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-foreground font-medium underline decoration-primary/40 underline-offset-2 hover:decoration-primary"
+            >
+              Plate8
+            </a>
+            , an AI restaurant operations platform in pilot at 3 restaurants.
+            Previously shipped GPU cloud backends and DevOps automation at
+            Skyportal.ai &amp; Oblivus Cloud.
           </p>
 
           <div className="flex flex-wrap gap-2">
@@ -210,6 +231,26 @@ export default function HeroSection() {
               </span>
             ))}
           </div>
+        </motion.div>
+
+        {/* Impact Metrics */}
+        <motion.div
+          variants={itemVariants}
+          className="grid grid-cols-2 sm:grid-cols-4 gap-2"
+        >
+          {impactMetrics.map((metric) => (
+            <div
+              key={metric.label}
+              className="rounded-xl border border-border/40 bg-card px-3 py-2.5"
+            >
+              <div className="text-lg font-bold tracking-tight text-foreground">
+                {metric.value}
+              </div>
+              <div className="text-[11px] leading-snug text-muted-foreground">
+                {metric.label}
+              </div>
+            </div>
+          ))}
         </motion.div>
 
         {/* CTA Buttons */}
@@ -241,7 +282,7 @@ export default function HeroSection() {
               variant="outline"
               className="rounded-full px-5 font-semibold border-border/50 gap-2"
             >
-              <Phone className="w-3.5 h-3.5" />
+              <SiGithub className="w-3.5 h-3.5" />
               GitHub
             </Button>
           </a>
