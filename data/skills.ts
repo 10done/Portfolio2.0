@@ -8,21 +8,36 @@ export const skillCategories: SkillCategory[] = [
   {
     id: "1",
     title: "Languages",
-    skills: ["C/C++", "Python", "JavaScript", "SQL", "HTML/CSS", "XML"]
+    skills: ["Python", "TypeScript", "JavaScript", "SQL", "C++", "C", "HTML", "CSS"]
   },
   {
     id: "2",
-    title: "Frameworks & Libraries",
-    skills: ["Django", "React.js", "Node.js", "Express.js", "HTMX", "Scikit-Learn", "Pandas", "SciPy"]
+    title: "AI / LLM Engineering",
+    skills: ["LLM applications", "AI agents", "Tool calling", "RAG", "Prompt engineering", "LLM evals", "Speech-to-text", "LLM observability", "Claude API", "OpenAI API", "Gemini API", "Amazon Bedrock"]
   },
   {
     id: "3",
-    title: "Databases & Storage",
-    skills: ["PostgreSQL", "MongoDB", "Redis", "AWS S3", "Oracle DB"]
+    title: "Frontend",
+    skills: ["React", "Next.js", "Tailwind CSS", "React Native", "Expo", "HTMX"]
   },
   {
     id: "4",
-    title: "DevOps & Cloud",
-    skills: ["Git", "Linux", "Docker", "Ansible", "Terraform", "CI/CD", "Google Cloud", "MATLAB", "virsh/libvirt"]
+    title: "Backend",
+    skills: ["FastAPI", "Node.js", "Express", "Django", "SQLAlchemy", "REST API design", "Microservices", "Celery", "Async job queues"]
+  },
+  {
+    id: "5",
+    title: "Databases",
+    skills: ["PostgreSQL", "MongoDB", "Redis", "Oracle DB", "AWS S3"]
+  },
+  {
+    id: "6",
+    title: "Cloud & DevOps",
+    skills: ["AWS", "Google Cloud", "Docker", "Terraform", "Ansible", "CI/CD", "Git", "Linux"]
+  },
+  {
+    id: "7",
+    title: "Testing & Core CS",
+    skills: ["pytest", "Unit / integration / E2E testing", "Data Structures & Algorithms", "System Design"]
   }
 ];

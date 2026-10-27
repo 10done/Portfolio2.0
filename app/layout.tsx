@@ -19,17 +19,23 @@ const inter = Inter({
 // Enhanced SEO metadata
 export const metadata: Metadata = {
   title: {
-    default: "Anubhav Tandon | Software Engineer & Full Stack Developer",
+    default: "Anubhav Tandon | AI Engineer & Full-Stack Software Engineer",
     template: "%s | Anubhav Tandon",
   },
   description:
-    "Portfolio of Anubhav Tandon — Software Engineer & Full Stack Developer specializing in Django, React, Node.js, DevOps, and scalable cloud systems. B.Tech CSE at IIT Jodhpur.",
+    "Portfolio of Anubhav Tandon — AI Engineer and Full-Stack Software Engineer (Python, TypeScript, React, Next.js, FastAPI), founder of Plate8 and IIT Jodhpur CSE graduate. Builds production LLM apps: AI agents, RAG, speech-to-text, evals and multi-tenant backends on AWS.",
   applicationName: "Anubhav Tandon Portfolio",
   category: "Portfolio",
   metadataBase: new URL(siteUrl),
 
   keywords: [
     "Anubhav Tandon",
+    "AI Engineer",
+    "LLM Engineer",
+    "AI Agents",
+    "Plate8",
+    "FastAPI",
+    "Next.js",
     "Full Stack Developer",
     "Software Engineer",
     "Django Developer",
@@ -62,9 +68,9 @@ export const metadata: Metadata = {
   },
 
   openGraph: {
-    title: "Anubhav Tandon | Software Engineer & Full Stack Developer",
+    title: "Anubhav Tandon | AI Engineer & Full-Stack Software Engineer",
     description:
-      "Portfolio of Anubhav Tandon showcasing full-stack web development, backend engineering, DevOps, and cloud infrastructure projects.",
+      "AI Engineer & Full-Stack Software Engineer. Founder of Plate8, an AI restaurant operations platform. IIT Jodhpur CSE.",
     url: siteUrl,
     siteName: "Anubhav Tandon Portfolio",
     images: [
@@ -81,9 +87,9 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: "Anubhav Tandon | Software Engineer & Full Stack Developer",
+    title: "Anubhav Tandon | AI Engineer & Full-Stack Software Engineer",
     description:
-      "Portfolio of Anubhav Tandon showcasing full-stack web development, backend engineering, and DevOps projects.",
+      "AI Engineer & Full-Stack Software Engineer. Founder of Plate8, an AI restaurant operations platform. IIT Jodhpur CSE.",
     images: [new URL("/og-image.jpg", siteUrl).toString()],
   },
 
@@ -155,7 +161,7 @@ export default function RootLayout({
                   "@id": `${siteUrl}/#website`,
                   "url": siteUrl,
                   "name": "Anubhav Tandon Portfolio",
-                  "description": "Portfolio of Anubhav Tandon — Software Engineer & Full Stack Developer",
+                  "description": "Portfolio of Anubhav Tandon — AI Engineer & Full-Stack Software Engineer",
                   "publisher": { "@id": `${siteUrl}/#person` },
                   "inLanguage": "en-US"
                 },
@@ -165,13 +171,22 @@ export default function RootLayout({
                   "name": "Anubhav Tandon",
                   "url": siteUrl,
                   "image": `${siteUrl}/profile.jpg`,
-                  "jobTitle": "Software Engineer & Full Stack Developer",
-                  "description": "Software Engineer and B.Tech CSE student at IIT Jodhpur specializing in full-stack development, backend engineering, and DevOps.",
+                  "jobTitle": "AI Engineer & Full-Stack Software Engineer",
+                  "description": "AI Engineer and Full-Stack Software Engineer, founder of Plate8, and IIT Jodhpur CSE graduate.",
                   "sameAs": [
                     "https://github.com/10done",
                     "https://www.linkedin.com/in/anubhav-tandon-9b8737245/"
                   ],
+                  "alumniOf": {
+                    "@type": "CollegeOrUniversity",
+                    "name": "Indian Institute of Technology Jodhpur"
+                  },
                   "knowsAbout": [
+                    "AI Engineering",
+                    "Large Language Models",
+                    "AI Agents",
+                    "FastAPI",
+                    "Next.js",
                     "Full Stack Development",
                     "Django",
                     "React",
