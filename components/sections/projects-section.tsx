@@ -115,6 +115,11 @@ export default function ProjectsSection() {
                     <h3 className="text-sm font-bold group-hover:text-primary transition-colors line-clamp-1">
                       {project.title}
                     </h3>
+                    {project.status && (
+                      <span className="w-fit -mt-1 text-[10px] uppercase tracking-wider font-semibold px-1.5 py-0.5 rounded bg-muted/60 text-muted-foreground">
+                        {project.status}
+                      </span>
+                    )}
                     <p className="text-xs text-muted-foreground line-clamp-4 leading-relaxed">
                       {project.description}
                     </p>

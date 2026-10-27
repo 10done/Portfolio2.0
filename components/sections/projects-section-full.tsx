@@ -63,6 +63,11 @@ export default function ProjectsSectionFull() {
                                                                     : "Mobile"}
                                                     </Badge>
                                                 </div>
+                                                {project.status && (
+                                                    <span className="inline-block mb-2 text-[10px] uppercase tracking-wider font-semibold px-1.5 py-0.5 rounded bg-muted/60 text-muted-foreground">
+                                                        {project.status}
+                                                    </span>
+                                                )}
                                                 <p className="text-muted-foreground text-sm mb-4 line-clamp-3">
                                                     {project.description}
                                                 </p>

@@ -7,6 +7,8 @@ export interface Project {
   // Optional: cards without an image render a gradient header with the subtitle
   image?: string;
   subtitle?: string;
+  // Small label shown under the title, e.g. "Stealth"
+  status?: string;
   highlights?: string[];
   demoUrl?: string;
   codeUrl?: string;
@@ -31,6 +33,7 @@ export const projects: Project[] = [
   {
     title: "Qarz.ai",
     subtitle: "AI home-loan document platform for Indian lenders",
+    status: "Stealth",
     description:
       "AI document-processing pipeline that classifies borrower documents, extracts fields with confidence scores and runs 20 validation checks, 7 cross-document rules and 5 tamper detectors, gated in CI by accuracy thresholds. Full-stack platform with lender-rule checklists, consent-based borrower links, malware-scanned and Aadhaar-masked uploads, officer review and WhatsApp reminders.",
     type: "ai",
@@ -48,7 +51,6 @@ export const projects: Project[] = [
     type: "fullstack",
     technologies: ["Node.js", "Express", "React", "Python", "MongoDB", "PostgreSQL", "Redis", "AWS S3", "Gemini API"],
     image: "/project/well-log.png",
-    demoUrl: "https://one-geo-anubhav.onrender.com/",
     codeUrl: "https://github.com/10done/One-Geo-Anubhav",
   },
   {
