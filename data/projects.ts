@@ -39,7 +39,6 @@ export const projects: Project[] = [
     highlights: [
       "CI-gated extraction accuracy (field accuracy ≥ 0.90)",
       "20 validation checks · 7 cross-doc rules · 5 tamper detectors",
-      "637 automated tests + 38 browser E2E tests",
     ],
     technologies: ["Next.js", "TypeScript", "FastAPI", "PostgreSQL", "AWS", "Amazon Bedrock"],
   },
