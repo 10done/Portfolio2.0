@@ -68,7 +68,7 @@ const highlightBadges = [
 const impactMetrics = [
   { value: "3", label: "restaurants piloting Plate8" },
   { value: "30%", label: "less food wastage at pilots" },
-  { value: "1,100+", label: "automated tests shipped" },
+  { value: "~25%", label: "lower API latency at Skyportal" },
   { value: "Top 1%", label: "JEE Advanced 2022 (~1.2M)" },
 ];
 

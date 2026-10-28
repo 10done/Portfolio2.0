@@ -29,7 +29,7 @@ export const experiences: Experience[] = [
     endDate: "present",
     description:
       "AI back-of-house operating system for Indian restaurants: voice-driven inventory, stock tracking and demand forecasting.",
-    metrics: ["3 pilot restaurants", "−30% food wastage", "460+ automated tests"],
+    metrics: ["3 pilot restaurants", "−30% food wastage"],
     achievements: [
       "Founded Plate8 and built the product end to end; onboarded 3 restaurants, currently under pilot, using it for daily inventory counts and stock tracking",
       "Lowered food wastage by 30% at pilot restaurants through efficient demand and stock forecasts",
@@ -38,6 +38,7 @@ export const experiences: Experience[] = [
       "Designed a multi-tenant FastAPI + PostgreSQL backend with row-level security, an append-only stock ledger and event outbox, plus a React Native (Expo) app and Next.js dashboard",
     ],
     technologies: ["Python", "FastAPI", "PostgreSQL", "Celery", "Redis", "React Native", "Next.js", "Claude API", "AWS", "Terraform"],
+    logo: "/company/plate8.svg",
   },
   {
     id: "2",

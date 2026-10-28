@@ -25,7 +25,6 @@ export const projects: Project[] = [
       "90%+ line-accuracy target, <3 s p95 at ~INR 145/outlet/month",
       "Offline evals: golden voice set + 200-phrase item-matching suite",
       "Multi-tenant FastAPI + Postgres with RLS, append-only stock ledger, event outbox",
-      "460+ automated tests",
     ],
     technologies: ["Python", "FastAPI", "PostgreSQL", "Celery", "Redis", "React Native", "Next.js", "Tailwind CSS", "Claude API", "AWS", "Terraform"],
     demoUrl: "https://plate8.io",
