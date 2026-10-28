@@ -42,7 +42,7 @@ const socialIcons = [
 const stats = [
   { icon: Rocket, label: "Founder @ Plate8" },
   { icon: GraduationCap, label: "B.Tech CSE, IIT Jodhpur '26" },
-  { icon: MapPin, label: "Jodhpur, India · Open to remote" },
+  { icon: MapPin, label: "Chandigarh, India / Bangalore, India" },
 ];
 
 const highlightBadges = [
