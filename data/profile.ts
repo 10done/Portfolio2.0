@@ -23,7 +23,7 @@ export const profileData: ProfileData = {
   bio: "AI Engineer and Full-Stack Software Engineer (Python, TypeScript, React, Next.js, FastAPI) and IIT Jodhpur CSE graduate. Founder of Plate8, an AI restaurant operations platform with 3 restaurants in pilot. Builds production LLM applications end to end: AI agents with tool calling, RAG, speech-to-text, LLM evals and multi-tenant backends on AWS.",
   email: "anubhavtandon6424@gmail.com",
   phone: "+91-9805464134",
-  location: "Jodhpur, Rajasthan, India",
+  location: "Chandigarh, India / Bangalore, India",
   avatar: "/profile.jpg",
   resume:
     "https://drive.google.com/file/d/135J6bj34Uj0DcAXtX49iLw7rwfCUWVm1/view?usp=sharing",
