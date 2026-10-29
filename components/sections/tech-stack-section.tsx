@@ -3,6 +3,9 @@
 import { motion } from "framer-motion";
 import SectionContainer from "@/components/section-container";
 import { techIcons } from "@/lib/tech-icons";
+import { skillCategories } from "@/data/skills";
+
+const featuredSkills = skillCategories.filter((category) => category.featured);
 import {
     Tooltip,
     TooltipContent,
@@ -105,6 +108,26 @@ export default function TechStackSection() {
                         })}
                     </div>
                 </TooltipProvider>
+
+                <div className="space-y-2.5 pt-2">
+                    {featuredSkills.map((category) => (
+                        <div key={category.id} className="flex flex-col sm:flex-row sm:items-baseline gap-1.5 sm:gap-3">
+                            <span className="text-xs font-semibold text-foreground sm:w-28 shrink-0">
+                                {category.title}
+                            </span>
+                            <div className="flex flex-wrap gap-1.5">
+                                {category.skills.map((skill) => (
+                                    <span
+                                        key={skill}
+                                        className="text-[11px] px-2 py-0.5 rounded-md bg-card border border-border/40 text-muted-foreground"
+                                    >
+                                        {skill}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+                    ))}
+                </div>
             </motion.div>
         </SectionContainer>
     );

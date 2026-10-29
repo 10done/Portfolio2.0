@@ -2,6 +2,8 @@ export interface SkillCategory {
   id: string;
   title: string;
   skills: string[];
+  // Shown on the homepage under the tech stack icons
+  featured?: boolean;
 }
 
 export const skillCategories: SkillCategory[] = [
@@ -12,8 +14,15 @@ export const skillCategories: SkillCategory[] = [
   },
   {
     id: "2",
-    title: "AI / LLM Engineering",
-    skills: ["LLM applications", "AI agents", "Tool calling", "RAG", "Prompt engineering", "LLM evals", "Speech-to-text", "LLM observability", "Claude API", "OpenAI API", "Gemini API", "Amazon Bedrock"]
+    title: "Agentic AI",
+    skills: ["AI agents", "Tool calling", "Agent loops", "Multi-step LLM workflows", "Structured outputs", "Human-in-the-loop", "Agent evals", "Agent tracing"],
+    featured: true
+  },
+  {
+    id: "8",
+    title: "LLM Engineering",
+    skills: ["RAG", "Prompt engineering", "Speech-to-text", "LLM observability", "Claude API", "OpenAI API", "Gemini API", "Amazon Bedrock"],
+    featured: true
   },
   {
     id: "3",

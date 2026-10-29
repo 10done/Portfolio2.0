@@ -31,6 +31,7 @@ export const metadata: Metadata = {
   keywords: [
     "Anubhav Tandon",
     "AI Engineer",
+    "Agentic AI",
     "LLM Engineer",
     "AI Agents",
     "Plate8",
@@ -185,6 +186,7 @@ export default function RootLayout({
                     "AI Engineering",
                     "Large Language Models",
                     "AI Agents",
+                    "Agentic AI",
                     "FastAPI",
                     "Next.js",
                     "Full Stack Development",

@@ -47,7 +47,7 @@ const stats = [
 
 const highlightBadges = [
   {
-    label: "AI Agents & LLM Evals",
+    label: "Agentic AI & LLM Evals",
     color: "bg-orange-500/15 text-orange-400 border-orange-500/30",
   },
   {
