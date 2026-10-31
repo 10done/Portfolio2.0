@@ -26,7 +26,7 @@ export const profileData: ProfileData = {
   location: "Chandigarh, India / Bangalore, India",
   avatar: "/profile.jpg",
   resume:
-    "https://drive.google.com/file/d/1O_RXzU5kuC5JUfzWWBkpUylYfqRbGRsr/view?usp=sharing",
+    "https://drive.google.com/file/d/1FXW9UU_fuefhptRXT0bd8pWuZ6nwwsQ_/view?usp=sharing",
   socialLinks: [
     {
       platform: "GitHub",
