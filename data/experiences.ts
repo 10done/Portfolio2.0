@@ -46,9 +46,9 @@ export const experiences: Experience[] = [
     role: "Software Engineer (Contract)",
     type: "contract",
     location: "Los Angeles, California (Remote)",
-    duration: "Jul 2025 – Jan 2026",
+    duration: "Jul 2025 – Sep 2026",
     startDate: "2025-07",
-    endDate: "2026-01",
+    endDate: "2026-09",
     description:
       "Backend engineering & DevOps for GPU cloud infrastructure serving enterprise AI workloads.",
     metrics: ["~25% lower API latency", "Sub-200 ms dashboards", "Deploys: hours → <15 min"],
