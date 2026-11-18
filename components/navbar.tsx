@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { Menu, X, Code } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -78,28 +78,6 @@ export default function Navbar() {
       )}
     >
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex h-16 items-center justify-between">
-        <motion.div
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          transition={{ type: "spring", stiffness: 400, damping: 17 }}
-        >
-          <Link
-            href="/"
-            className="flex items-center gap-2 font-bold text-lg transition-colors group"
-          >
-            <motion.div
-              animate={{ rotate: hoveredLink === "/" ? 360 : 0 }}
-              transition={{ duration: 0.5, ease: "easeInOut" }}
-            >
-              <Code className="h-5 w-5 text-primary group-hover:text-primary/80" />
-            </motion.div>
-            <span className="font-mono">
-              <span className="text-gradient-brand">Anubhav</span>
-              <span className="text-foreground">.dev</span>
-            </span>
-          </Link>
-        </motion.div>
-
         {/* Desktop Menu */}
         <motion.nav 
           className="hidden md:flex items-center space-x-8"
