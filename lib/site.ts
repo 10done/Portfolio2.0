@@ -1,6 +1,6 @@
 /**
  * Canonical site URL for metadata (OG, Twitter, JSON-LD).
- * Set NEXT_PUBLIC_SITE_URL in production (e.g. https://10doneportfolio.vercel.app).
+ * Set NEXT_PUBLIC_SITE_URL in production (e.g. https://www.10done.xyz).
  * On Vercel, VERCEL_URL is used as fallback when unset.
  */
 export function getSiteUrl(): string {

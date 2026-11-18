@@ -13,6 +13,17 @@ const nextConfig: NextConfig = {
   serverExternalPackages: [],
 
 
+  async redirects() {
+    return [
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "10doneportfolio.vercel.app" }],
+        destination: "https://www.10done.xyz/:path*",
+        permanent: true,
+      },
+    ];
+  },
+
   async headers() {
     return [
       {
