@@ -80,7 +80,7 @@ export default function Navbar() {
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex h-16 items-center justify-between">
         {/* Desktop Menu */}
         <motion.nav 
-          className="hidden md:flex items-center space-x-8"
+          className="hidden md:flex ml-auto items-center space-x-8"
           initial="hidden"
           animate="visible"
           variants={containerVariants}
@@ -134,7 +134,7 @@ export default function Navbar() {
         </motion.nav>
 
         {/* Mobile Menu Button */}
-        <div className="flex items-center md:hidden space-x-2">
+        <div className="flex ml-auto items-center md:hidden space-x-2">
           <ThemeToggle />
           <motion.div whileTap={{ scale: 0.9 }}>
             <Button
