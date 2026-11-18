@@ -20,7 +20,7 @@ export interface ProfileData {
 export const profileData: ProfileData = {
   name: "Anubhav Tandon",
   tagline: "AI Engineer | Full-Stack Software Engineer | Founder @ Plate8 | IIT Jodhpur CSE",
-  bio: "AI Engineer and Full-Stack Software Engineer (Python, TypeScript, React, Next.js, FastAPI) and IIT Jodhpur CSE graduate. Founder of Plate8, an AI restaurant operations platform with 3 restaurants in pilot. Builds production LLM applications end to end: AI agents with tool calling, RAG, speech-to-text, LLM evals and multi-tenant backends on AWS.",
+  bio: "AI Engineer and IIT Jodhpur CSE graduate who builds production LLM agents, real-time voice AI and data-heavy backends. Founder of Plate8, a conversational AI back-of-house agent for independent restaurants and small chains that bill on a POS. Ships AI systems end to end: tool-calling agents, voice interfaces, speech-to-text, offline evals and multi-tenant backends on AWS.",
   email: "anubhavtandon6424@gmail.com",
   phone: "+91-9805464134",
   location: "Chandigarh, India / Bangalore, India",

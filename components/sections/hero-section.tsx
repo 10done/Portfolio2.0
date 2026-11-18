@@ -201,13 +201,14 @@ export default function HeroSection() {
         {/* Bio */}
         <motion.div variants={itemVariants} className="space-y-3">
           <p className="text-sm text-muted-foreground leading-relaxed max-w-xl">
-            I build production LLM applications end to end:{" "}
+            I build production{" "}
+            <span className="text-foreground font-medium">LLM agents</span>,{" "}
             <span className="text-foreground font-medium">
-              AI agents with tool calling
-            </span>
-            , RAG, speech-to-text,{" "}
-            <span className="text-foreground font-medium">LLM evals</span> and
-            multi-tenant backends on AWS. Founder of{" "}
+              real-time voice AI
+            </span>{" "}
+            and data-heavy backends end to end: tool-calling agents, voice
+            interfaces, speech-to-text, offline evals and multi-tenant backends
+            on AWS. Founder of{" "}
             <a
               href="https://plate8.io"
               target="_blank"
@@ -216,9 +217,10 @@ export default function HeroSection() {
             >
               Plate8
             </a>
-            , an AI restaurant operations platform in pilot at 3 restaurants.
-            Previously shipped GPU cloud backends and DevOps automation at
-            Skyportal.ai &amp; Oblivus Cloud.
+            , a conversational AI back-of-house agent for restaurants, in pilot
+            at 3 restaurants. Previously an engineer at Skyportal.ai &amp;
+            Oblivus Cloud, a GPU cloud platform that reached $1.5M in annual
+            revenue and was then acquired by GPUX.
           </p>
 
           <div className="flex flex-wrap gap-2">

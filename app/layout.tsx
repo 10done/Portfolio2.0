@@ -71,7 +71,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Anubhav Tandon | AI Engineer & Full-Stack Software Engineer",
     description:
-      "AI Engineer & Full-Stack Software Engineer. Founder of Plate8, an AI restaurant operations platform. IIT Jodhpur CSE.",
+      "AI Engineer & Full-Stack Software Engineer. Founder of Plate8, a conversational AI back-of-house agent for restaurants. IIT Jodhpur CSE.",
     url: siteUrl,
     siteName: "Anubhav Tandon Portfolio",
     images: [
@@ -90,7 +90,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Anubhav Tandon | AI Engineer & Full-Stack Software Engineer",
     description:
-      "AI Engineer & Full-Stack Software Engineer. Founder of Plate8, an AI restaurant operations platform. IIT Jodhpur CSE.",
+      "AI Engineer & Full-Stack Software Engineer. Founder of Plate8, a conversational AI back-of-house agent for restaurants. IIT Jodhpur CSE.",
     images: [new URL("/og-image.jpg", siteUrl).toString()],
   },
 
