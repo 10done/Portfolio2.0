@@ -43,11 +43,11 @@ export const projects: Project[] = [
   {
     title: "Virtual Science Lab",
     description:
-      "Modular virtual science lab featuring 10 interactive HTML5 Canvas experiments (5 physics, 5 chemistry) built for Open Science Labs. Integrated a secure multi-language code execution environment via Django + Piston API with SRI-protected Ace Editor.",
+      "Virtual science lab with 10 interactive React experiments (5 physics, 5 chemistry) built for Open Science Labs, plus a Python code editor on Django and the Piston API with stdin handling and rate limits.",
     type: "fullstack",
-    technologies: ["Django", "HTML5 Canvas", "JavaScript", "Python", "Piston API"],
+    technologies: ["Django", "React", "JavaScript", "Python", "Piston API"],
     image: "/company/open-science-labs-logo.png",
-    demoUrl: "https://github.com/alphaonelabs/alphaonelabs-education-website/pulls?q=is:pr+is:merged+author:10done",
-    codeUrl: "https://github.com/alphaonelabs/alphaonelabs-education-website/pulls?q=is:pr+is:merged+author:10done",
+    demoUrl: "https://github.com/alphaonelabs/website/pulls?q=is%3Apr+state%3Aclosed+author%3A10done",
+    codeUrl: "https://github.com/alphaonelabs/website/pulls?q=is%3Apr+state%3Aclosed+author%3A10done",
   },
 ];
