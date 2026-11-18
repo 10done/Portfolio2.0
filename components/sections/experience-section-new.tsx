@@ -13,7 +13,6 @@ import SectionHeader from "@/components/section-header";
 const typeLabels: Record<string, string> = {
     founder: "Founder",
     fulltime: "Full-time",
-    contract: "Contract",
     intern: "Internship",
 };
 
@@ -86,7 +85,7 @@ const ExperienceSection = () => {
                                         <p className="text-sm text-muted-foreground font-medium flex items-center gap-2 flex-wrap">
                                             {exp.role}
                                             {/* Skip the badge when the role title already says it, e.g. "Founder" */}
-                                            {!exp.role.toLowerCase().includes(exp.type) && (
+                                            {typeLabels[exp.type] && !exp.role.toLowerCase().includes(exp.type) && (
                                                 <span className="text-[10px] uppercase tracking-wider font-semibold px-1.5 py-0.5 rounded bg-muted/60 text-muted-foreground/80">
                                                     {typeLabels[exp.type]}
                                                 </span>
