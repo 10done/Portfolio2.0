@@ -16,28 +16,36 @@ interface Contribution {
 
 const contributions: Contribution[] = [
   {
+    title: "DMD",
+    organization: "dlang · D language compiler",
+    description:
+      "Made the compiler detect a ref that escapes through a closure, and fixed a 16-bit left shift that used 32-bit flags.",
+    link: "https://github.com/dlang/dmd/pulls?q=is:pr+author:10done",
+    tags: ["D", "Compilers", "Memory safety"],
+  },
+  {
     title: "Flagsmith",
     organization: "Flagsmith · Django feature-flag platform",
     description:
-      "Fixed project-admin custom field permissions, added soft delete for ClickHouse identities, and added multivariate environment diff detection.",
+      "Let project admins manage project-scoped custom fields, detected multivariate differences between environments, and fixed password validation order on disabled invites.",
     link: "https://github.com/Flagsmith/flagsmith/pulls?q=is:pr+author:10done",
-    tags: ["Python", "Django", "ClickHouse"],
+    tags: ["Python", "Django"],
   },
   {
     title: "AsyncAPI Generator",
     organization: "AsyncAPI Initiative",
     description:
-      "Added registerOutgoingProcessor() to the JavaScript WebSocket client template and HandleError to the Dart client.",
+      "Added registerOutgoingProcessor() to the JavaScript WebSocket client, a HandleError component for Dart, and Dart send methods generated from AsyncAPI operations.",
     link: "https://github.com/asyncapi/generator/pulls?q=is:pr+author:10done",
     tags: ["JavaScript", "Dart", "WebSockets"],
   },
   {
-    title: "AlphaOneLabs Education Platform",
+    title: "Alpha One Labs Education Platform",
     organization: "alphaonelabs",
     description:
-      "Contributed merged pull requests to the education platform and helped improve product quality through code contributions and fixes.",
-    link: "https://github.com/alphaonelabs/alphaonelabs-education-website/pulls?q=is:pr+is:merged+author:10done",
-    tags: ["Django", "Pull Requests", "Web Development"],
+      "Merged 18 pull requests (15 features and 3 bug fixes): a virtual science lab, a Python code editor, envelope-encrypted messages, learning streaks, achievement badges, shareable certificates and deadline reminders.",
+    link: "https://github.com/alphaonelabs/website/pulls?q=is%3Apr+state%3Aclosed+author%3A10done",
+    tags: ["Django", "Python", "React"],
   },
 ];
 
@@ -47,7 +55,7 @@ export default function OpenSourceSection() {
       <SectionHeader
         label="Open Source"
         title="Open Source Contributions"
-        description="Merged and in-review pull requests to production open-source projects."
+        description="Merged pull requests to production open-source projects."
       />
 
       <div className="grid grid-cols-1 gap-4">

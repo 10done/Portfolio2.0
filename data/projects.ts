@@ -32,15 +32,6 @@ export const projects: Project[] = [
     demoUrl: "https://plate8.io",
   },
   {
-    title: "Well-Log Pro",
-    description:
-      "Full-stack well-log analysis platform for uploading LAS files, visualizing subsurface curves and depth plots, and generating AI-powered geological interpretations through an interactive Gemini-driven chat interface. Microservice architecture with concurrent file processing.",
-    type: "fullstack",
-    technologies: ["Node.js", "Express", "React", "Python", "MongoDB", "PostgreSQL", "Redis", "AWS S3", "Gemini API"],
-    image: "/project/well-log.png",
-    codeUrl: "https://github.com/10done/One-Geo-Anubhav",
-  },
-  {
     title: "Virtual Science Lab",
     description:
       "Virtual science lab with 10 interactive React experiments (5 physics, 5 chemistry) built for Open Science Labs, plus a Python code editor on Django and the Piston API with stdin handling and rate limits.",
