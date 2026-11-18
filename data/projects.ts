@@ -17,30 +17,19 @@ export interface Project {
 export const projects: Project[] = [
   {
     title: "Plate8",
-    subtitle: "AI back-of-house OS for Indian restaurants",
+    subtitle: "Conversational AI back-of-house agent for restaurants",
     description:
-      "Voice-first inventory and stock platform live in pilot at 3 restaurants. Staff speak counts in Hindi, Punjabi or English; a speech-to-text + Claude Haiku pipeline extracts, matches and confidence-scores line items, and Walter, a tool-calling agent on the Anthropic Messages API, answers operational questions with every call traced for cost and latency.",
+      "Restaurant teams talk to Walter, a proactive AI agent with memory across sessions, in the app, on the web, on the phone or on WhatsApp. Walter counts stock, drafts prep and orders, and asks before it acts. Built for independent restaurants and small chains that bill on a POS, and live in pilot at 3 restaurants.",
     type: "ai",
     highlights: [
-      "90%+ line-accuracy target, <3 s p95 at ~INR 145/outlet/month",
-      "Offline evals: golden voice set + 200-phrase item-matching suite",
-      "Multi-tenant FastAPI + Postgres with RLS, append-only stock ledger, event outbox",
+      "Voice answers cut from 6–7 s to ~3 s with a wait line and 0.4 s barge-in",
+      "Eval harness cut Walter failures from 21 to 2 of 60 cases; cost per pass ₹0.16 → ₹0.10",
+      "Dish analytics in 3–4 ms on 344k sales lines (67 ms for a full year by day)",
+      "Prep-sheet error 12.5% → 8.1%; ₹2.9 crore of POS sales reconciled to the exact rupee",
+      "32 role-scoped tools · 1,000+ reproducible simulated sessions with bootstrap CIs",
     ],
-    technologies: ["Python", "FastAPI", "PostgreSQL", "Celery", "Redis", "React Native", "Next.js", "Tailwind CSS", "Claude API", "AWS", "Terraform"],
+    technologies: ["Python", "FastAPI", "PostgreSQL", "Celery", "Redis", "LiveKit", "Claude API", "React Native", "Next.js", "AWS", "Terraform"],
     demoUrl: "https://plate8.io",
-  },
-  {
-    title: "Qarz.ai",
-    subtitle: "AI home-loan document platform for Indian lenders",
-    status: "Stealth",
-    description:
-      "AI document-processing pipeline that classifies borrower documents, extracts fields with confidence scores and runs 20 validation checks, 7 cross-document rules and 5 tamper detectors, gated in CI by accuracy thresholds. Full-stack platform with lender-rule checklists, consent-based borrower links, malware-scanned and Aadhaar-masked uploads, officer review and WhatsApp reminders.",
-    type: "ai",
-    highlights: [
-      "CI-gated extraction accuracy (field accuracy ≥ 0.90)",
-      "20 validation checks · 7 cross-doc rules · 5 tamper detectors",
-    ],
-    technologies: ["Next.js", "TypeScript", "FastAPI", "PostgreSQL", "AWS", "Amazon Bedrock"],
   },
   {
     title: "Well-Log Pro",
