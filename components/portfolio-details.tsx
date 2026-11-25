@@ -15,7 +15,7 @@ export default function PortfolioDetails() {
     </section>
     <section id="education" className="detail-section">
       <div className="detail-heading"><p className="field-kicker">04 / Education</p><h2>Education &amp;<br /><em>achievements.</em></h2></div>
-      <div className="detail-list"><article className="detail-entry detail-static"><small>Oct 2022 – May 2026</small><h3>Indian Institute of Technology Jodhpur</h3><p>B.Tech in Computer Science and Engineering</p></article><article className="detail-entry detail-static"><small>JEE Advanced 2022</small><h3>Top 1%</h3><p>Among approximately 1.2 million candidates.</p></article><article className="detail-entry detail-static"><small>Competitive programming</small><h3>Codeforces Specialist</h3><p>Global ranks 1523 (Div. 2), 1655 and 1673 (Div. 3); 500+ DSA problems solved.</p></article></div>
+      <div className="detail-list"><article className="detail-entry detail-static"><small>Oct 2022 – May 2026</small><h3>Indian Institute of Technology Jodhpur</h3><p>B.Tech in Computer Science and Engineering</p></article><article className="detail-entry detail-static"><small>Competitive programming</small><h3>Codeforces Specialist</h3><p>Global ranks 1523 (Div. 2), 1655 and 1673 (Div. 3); 500+ DSA problems solved.</p></article></div>
     </section>
     <section id="tech-stack" className="detail-section">
       <div className="detail-heading"><p className="field-kicker">05 / Toolkit</p><h2>Tech<br /><em>stack.</em></h2><p>The tools and disciplines I use to build and ship.</p></div>

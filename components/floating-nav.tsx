@@ -67,7 +67,7 @@ export default function FloatingNav() {
       transition={{ duration: 0.3 }}
       className="fixed bottom-18 left-1/2 transform -translate-x-1/2 z-50"
     >
-      <div className="bg-background/80 backdrop-blur-lg border border-slate-200/20 rounded-full px-6 py-3 shadow-lg shadow-slate-200/10">
+      <div className="floating-social">
         <div className="flex items-center gap-2">
           {socialLinks.map((link, index) => (
             <motion.div
@@ -88,7 +88,7 @@ export default function FloatingNav() {
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="h-10 w-10 rounded-full hover:bg-slate-200/10 hover:text-slate-600 transition-all duration-300"
+                  className="h-10 w-10 rounded-full hover:bg-[#e8ddd0] hover:text-[#963f20] transition-colors"
                   aria-label={link.label}
                 >
                   <link.icon className="h-5 w-5" />
