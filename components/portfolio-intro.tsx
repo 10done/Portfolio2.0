@@ -3,6 +3,7 @@
 import { Cabinet } from "@lucasmarkes/hairline/react";
 import { AgentFigure, VoiceFigure } from "@/components/portfolio-figures";
 import { useState } from "react";
+import Image from "next/image";
 import { profileData } from "@/data/profile";
 
 export default function PortfolioIntro() {
@@ -13,7 +14,7 @@ export default function PortfolioIntro() {
       <header className="field-nav">
         <a href="#top" className="field-brand">Anubhav Tandon</a>
         <nav aria-label="Main navigation">
-          <a href="#experience">Work</a><a href="#education">Education</a><a href="/projects">Projects</a><a href={profileData.resume} target="_blank" rel="noreferrer">Resume</a><a href="#contact">Contact</a>
+          <a href="#experience">Work</a><a href="#about">About</a><a href="#education">Education</a><a href="/projects">Projects</a><a href={profileData.resume} target="_blank" rel="noreferrer">Resume</a><a href="#contact">Contact</a>
         </nav>
       </header>
       <div className="field-motion"><button type="button" onClick={() => setPlaying(!playing)}>{playing ? "Pause animations" : "Play animations"}</button></div>
@@ -34,6 +35,10 @@ export default function PortfolioIntro() {
       <section className="field-project field-grid" aria-labelledby="skyportal-heading">
         <div><p className="field-kicker">02 / Previous work</p><h2 id="skyportal-heading">Skyportal</h2><p className="field-subtitle">Infrastructure for GPU cloud.</p><p className="field-copy">Built backend systems at Skyportal.ai and Oblivus Cloud, a GPU cloud platform acquired by GPUX.</p><div className="field-facts"><p><strong>~25%</strong> lower API latency</p></div><a className="field-text-link" href="#experience">More experience ↗</a></div>
         <div className="field-figure"><Cabinet play={playing} theme="light" aria-label="A server rack; move the pointer to explore its blades" /></div>
+      </section>
+      <section id="about" className="field-about" aria-labelledby="about-heading">
+        <div className="field-about-copy"><p className="field-kicker">A little about me</p><h2 id="about-heading">Engineer.<br /><em>Founder.</em></h2><p className="field-copy">I&apos;m Anubhav, a computer science graduate from IIT Jodhpur. I build AI systems and software that people can use in their day-to-day work.</p><a className="field-text-link" href="#education">Education &amp; achievements ↗</a></div>
+        <div className="field-photos"><Image src="/photos/anubhav-portrait.webp" alt="Anubhav Tandon outdoors" width={1200} height={1600} sizes="(max-width: 700px) 45vw, 24vw" /><Image src="/photos/anubhav-outdoors.webp" alt="Anubhav Tandon sitting among trees" width={1200} height={1600} sizes="(max-width: 700px) 45vw, 24vw" /></div>
       </section>
     </div>
   );
