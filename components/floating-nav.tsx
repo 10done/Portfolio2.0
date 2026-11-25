@@ -88,7 +88,7 @@ export default function FloatingNav() {
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="h-10 w-10 rounded-full hover:bg-[#e8ddd0] hover:text-[#963f20] transition-colors"
+                  className="h-10 w-10 rounded-full hover:bg-muted hover:text-[var(--site-accent)] transition-colors"
                   aria-label={link.label}
                 >
                   <link.icon className="h-5 w-5" />

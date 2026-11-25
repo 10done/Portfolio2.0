@@ -41,7 +41,7 @@ export const experiences: Experience[] = [
   },
   {
     id: "2",
-    company: "Skyportal.ai & Oblivus Cloud",
+    company: "Oblivus Cloud",
     role: "Software Engineer",
     type: "contract",
     location: "Los Angeles, CA (Remote)",

@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { ThemeToggle } from "@/components/theme-toggle";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
@@ -130,14 +129,10 @@ export default function Navbar() {
               </Link>
             </motion.div>
           ))}
-          <motion.div variants={itemVariants}>
-            <ThemeToggle />
-          </motion.div>
         </motion.nav>
 
         {/* Mobile Menu Button */}
         <div className="flex ml-auto items-center md:hidden space-x-2">
-          <ThemeToggle />
           <motion.div whileTap={{ scale: 0.9 }}>
             <Button
               variant="ghost"

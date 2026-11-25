@@ -1,49 +1,143 @@
 "use client";
 
-import { useRef, useState, type PointerEvent } from "react";
+import { useEffect, useId, useRef, useState } from "react";
+import HL from "@/lib/hairline/kernel.mjs";
 
-function usePointerFigure() {
-  const ref = useRef<HTMLButtonElement>(null);
-  const [active, setActive] = useState(false);
-  const [step, setStep] = useState(0);
-  function move(event: PointerEvent<HTMLButtonElement>) {
-    const box = event.currentTarget.getBoundingClientRect();
-    event.currentTarget.style.setProperty("--x", String(Math.max(-1, Math.min(1, (event.clientX - box.left) / box.width * 2 - 1))));
-    event.currentTarget.style.setProperty("--y", String(Math.max(-1, Math.min(1, (event.clientY - box.top) / box.height * 2 - 1))));
-    setActive(true);
-  }
-  function cycle() {
-    const next = (step + 1) % 3;
-    setStep(next);
-    ref.current?.style.setProperty("--x", String(next - 1));
-    ref.current?.style.setProperty("--y", String(1 - next));
-    setActive(true);
-  }
-  return { ref, active, move, cycle, leave: () => setActive(false) };
-}
+type Motion = [number, number, number?];
+type Part = { label: string; point: [number, number]; outline: string; motion: Motion; pivot?: [number, number] };
+type Artwork = { title: string; frame: [number, number, number, number]; parts: Part[] };
 
-export function AgentFigure({ playing }: { playing: boolean }) {
-  const figure = usePointerFigure();
-  return <button ref={figure.ref} type="button" className={`diagram agent-diagram ${playing ? "is-playing" : ""} ${figure.active ? "is-active" : ""}`} onPointerMove={figure.move} onPointerLeave={figure.leave} onClick={figure.cycle} onBlur={figure.leave} aria-label="Explore application, agent and infrastructure layers. Move the pointer or press to change the layers.">
-    <svg viewBox="0 0 500 520" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">
-      <g className="diagram-guides" strokeDasharray="4 5"><path d="M85 180v220M415 180v220M85 180l165-80 165 80M85 400l165 80 165-80"/><path d="M250 100v380M60 275l190 95 190-95"/></g>
-      <g className="agent-layer agent-bottom"><path className="diagram-surface" d="M90 352 250 274 410 352 250 430Z"/><path d="M90 352v13l160 78 160-78v-13M250 430v13"/><ellipse cx="185" cy="351" rx="25" ry="12"/><path d="M160 351v24c0 7 11 12 25 12s25-5 25-12v-24M160 363c0 7 11 12 25 12s25-5 25-12"/><path d="m272 352 25-12 25 12-25 12z m0 0v25l25 12v-25m25-12v25l-25 12m33-54 20-10 20 10-20 10z m0 0v20l20 10v-20m20-10v20l-20 10"/><path d="m210 370 22 10 32-16"/></g>
-      <g className="agent-layer agent-middle"><path className="diagram-surface" d="M90 237 250 159 410 237 250 315Z"/><path d="M90 237v13l160 78 160-78v-13M250 315v13"/><path d="m215 230 35-17 35 17-35 17z m0 0v28l35 17v-28m35-17v28l-35 17M141 239l25-12 25 12-25 12zm0 0v20l25 12v-20m25-12v20l-25 12M309 239l25-12 25 12-25 12zm0 0v20l25 12v-20m25-12v20l-25 12"/><path d="m190 249 25-12m70 0 24 12"/></g>
-      <g className="agent-layer agent-top"><path className="diagram-surface" d="M90 122 250 44 410 122 250 200Z"/><path d="M90 122v13l160 78 160-78v-13M250 200v13"/><path d="m167 126 79-38 79 38-79 39z m-9 10 88 43 88-43M205 107l11-36 76 37-46 22z M216 71l76 37M246 130v12m-39-23 40 19"/><path d="m147 130-14 7 32 16 15-8m-39-4v14l24 12v-14m0 14 15-8v-14"/><path d="M341 121v-40l-55-27v40m0-40 7-4 55 27-7 4m0 0 7-4v40"/></g>
-    </svg>
-  </button>;
-}
+const artwork: Record<"agent" | "voice" | "rack", Artwork> = {
+  agent: {
+    title: "Agent workspace",
+    frame: [511, 96, 481, 564],
+    parts: [
+      { label: "Application layer", point: [791, 244], outline: "M627 233 690 197 692 149 751 148 782 116 908 177 908 233 939 248 939 265 794 343 627 248Z", motion: [0, -21] },
+      { label: "Agent layer", point: [791, 373], outline: "M627 365 709 319 755 341 789 332 813 339 946 385 946 402 799 484 627 384Z", motion: [17, -3] },
+      { label: "Infrastructure layer", point: [791, 512], outline: "M626 501 693 462 724 455 753 468 789 449 943 515 943 533 795 615 626 518Z", motion: [0, 16] },
+    ],
+  },
+  voice: {
+    title: "Voice console",
+    frame: [525, 704, 470, 339],
+    parts: [
+      { label: "Microphone", point: [690, 782], outline: "M632 787 649 781 668 735Q685 700 716 714T742 762L721 818 705 847 678 859 646 845 630 817Z", motion: [0, 0, -11], pivot: [682, 808] },
+      { label: "Gain dial", point: [784, 920], outline: "M750 927Q754 890 784 891T819 931Q818 955 784 956T750 927Z", motion: [0, -9] },
+      { label: "Console buttons", point: [677, 936], outline: "M637 924 650 915 718 944 718 956 701 956 636 934Z", motion: [0, 3] },
+    ],
+  },
+  rack: {
+    title: "Server rack",
+    frame: [524, 1068, 471, 352],
+    parts: [
+      { label: "Top server blade", point: [667, 1237], outline: "M581 1221 653 1183 730 1188 772 1206 771 1227 683 1271 581 1245Z", motion: [-20, 10] },
+      { label: "Middle server blade", point: [663, 1292], outline: "M558 1281 601 1256 683 1275 770 1233 770 1283 675 1334 558 1307Z", motion: [-20, 10] },
+      { label: "Bottom server blade", point: [658, 1347], outline: "M554 1331 582 1316 676 1340 768 1292 767 1338 674 1387 554 1357Z", motion: [-20, 10] },
+    ],
+  },
+};
 
-export function VoiceFigure({ playing }: { playing: boolean }) {
-  const figure = usePointerFigure();
-  return <button ref={figure.ref} type="button" className={`diagram voice-diagram ${playing ? "is-playing" : ""} ${figure.active ? "is-active" : ""}`} onPointerMove={figure.move} onPointerLeave={figure.leave} onClick={figure.cycle} onBlur={figure.leave} aria-label="Explore the voice console. Move the pointer or press to move the microphone and controls.">
-    <svg viewBox="0 0 500 400" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">
-      <g className="diagram-guides" strokeDasharray="4 5"><path d="M53 285 248 184 454 278 258 380zM80 171v151m341-133v124M53 285l-16 8m417-15 17 8"/></g>
-      <path className="diagram-surface" d="M55 272 249 174 450 268 254 370Z"/><path d="M55 272v23l199 94 196-99v-22M254 370v19"/><path d="M72 271 249 182l184 86-180 92z" opacity=".45"/>
-      <path d="m93 280 22-11 22 10-22 12z m39 18 22-11 22 10-22 12z m39 18 22-11 22 10-22 12z"/>
-      <g className="voice-dial"><ellipse cx="315" cy="284" rx="24" ry="12"/><path d="M291 284v10c0 7 11 12 24 12s24-5 24-12v-10M315 277v7l6 3"/></g>
-      <path d="m323 226 63 29m-58-36 63 29m-58-36 63 29m-58-36 63 29" opacity=".65"/>
-      <g className="voice-microphone"><ellipse cx="223" cy="199" rx="31" ry="14"/><path d="M223 198v-33M191 108v25c0 22 14 39 32 39s32-17 32-39v-25"/><rect className="diagram-surface" x="202" y="43" width="42" height="99" rx="21"/><path d="M210 68h26m-26 8h26m-26 8h26m-26 8h26m-26 8h26m-26 8h26m-26 8h26"/><path d="M193 104h-5v21h5m60-21h5v21h-5"/></g>
-    </svg>
-  </button>;
+export function PortfolioFigure({ name, playing }: {
+  name: keyof typeof artwork;
+  playing: boolean;
+}) {
+  const { title, frame, parts } = artwork[name];
+  const [x, y, width, height] = frame;
+  const id = useId();
+  const stage = useRef<HTMLButtonElement>(null);
+  const movingParts = useRef<(SVGGElement | null)[]>([]);
+  const selectPart = useRef<(index: number) => void>(() => {});
+  const [selected, setSelected] = useState(-1);
+
+  useEffect(() => {
+    const element = stage.current;
+    if (!element) return;
+    const groups = movingParts.current.slice();
+    const springs = parts.map(() => HL.spring(0, { k: 230, c: 30 }));
+    const clock = HL.register(element, (seconds) => {
+      let moving = false;
+      springs.forEach((spring, index) => {
+        const previous = spring.x;
+        if (HL.stepS(spring, seconds)) moving = true;
+        if (previous === spring.x) return;
+        const { motion: [dx, dy, angle = 0], pivot: [px, py] = [0, 0] } = parts[index];
+        const amount = spring.x;
+        groups[index]?.setAttribute("transform",
+          `translate(${dx * amount} ${dy * amount}) rotate(${angle * amount} ${px} ${py})`);
+      });
+      return moving;
+    });
+
+    let active = -1;
+    const select = (index: number) => {
+      if (active === index) return;
+      active = index;
+      springs.forEach((spring, i) => { spring.t = i === index ? 1 : 0; });
+      clock.wake();
+    };
+    selectPart.current = select;
+
+    const stops = parts.map(({ point: [px, py] }): [number, number] =>
+      [(px - x) / width * 400, (py - y) / height * 320]);
+    const release = HL.pointer(element, {
+      move([px, py]) {
+        const distance = ([sx, sy]: [number, number]) => Math.hypot(px - sx, py - sy);
+        const nearest = stops.reduce((best, point, i) =>
+          distance(point) < distance(stops[best]) ? i : best, 0);
+        if (active < 0 || distance(stops[nearest]) + 7 < distance(stops[active])) {
+          select(nearest);
+        }
+      },
+      leave: () => select(-1),
+    });
+    const tour = playing ? HL.tour(element, [...stops, null]) : undefined;
+
+    return () => {
+      tour?.stop();
+      release();
+      clock.unregister();
+      selectPart.current = () => {};
+      groups.forEach(part => part?.removeAttribute("transform"));
+    };
+  }, [parts, playing, x, y, width, height]);
+
+  return (
+    <button
+      ref={stage}
+      type="button"
+      className="mockup-figure"
+      aria-label={`${title}. Select to move the next part.`}
+      onClick={event => {
+        if (event.detail !== 0) return;
+        const next = (selected + 1) % parts.length;
+        setSelected(next);
+        selectPart.current(next);
+      }}
+      onBlur={() => {
+        setSelected(-1);
+        selectPart.current(-1);
+      }}
+    >
+      <svg viewBox={frame.join(" ")} width={width} height={height} aria-hidden="true">
+        <defs>
+          <image id={`${id}-art`} href={`/figures/${name === "agent" ? "agent-workspace" : name === "voice" ? "voice-console" : "server-rack"}.webp`}
+            x={x} y={y} width={width} height={height} />
+          <mask id={`${id}-stationary`} maskUnits="userSpaceOnUse" x={x} y={y} width={width} height={height}>
+            <rect x={x} y={y} width={width} height={height} fill="white" />
+            {parts.map(part => <path key={part.label} d={part.outline} fill="black" />)}
+          </mask>
+          {parts.map((part, i) => (
+            <clipPath id={`${id}-part-${i}`} key={part.label}><path d={part.outline} /></clipPath>
+          ))}
+        </defs>
+        <use href={`#${id}-art`} mask={`url(#${id}-stationary)`} />
+        {parts.map((part, i) => (
+          <g key={part.label} ref={node => { movingParts.current[i] = node; }}>
+            <use href={`#${id}-art`} clipPath={`url(#${id}-part-${i})`} />
+          </g>
+        ))}
+      </svg>
+      <span className="sr-only" aria-live="polite">{parts[selected]?.label}</span>
+    </button>
+  );
 }

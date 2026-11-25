@@ -43,7 +43,7 @@ export default function GitHubSection() {
                 <div className="detail-heading"><p className="field-kicker">08 / Activity</p><h2 id="github-heading">On <em>GitHub.</em></h2><p>Contributions over the last year.</p><a className="detail-link" href={`https://github.com/${githubConfig.username}`} target="_blank" rel="noopener noreferrer">View GitHub profile ↗</a></div>
                 <div className="github-calendar">
                     {loading ? <p>Loading contributions…</p> : error ? <p>Unable to load contributions.</p> : contributions.length === 0 ? <p>No contribution data available.</p> : (
-                        <ActivityCalendar data={contributions} blockSize={githubConfig.blockSize} blockMargin={githubConfig.blockMargin} fontSize={githubConfig.fontSize} maxLevel={githubConfig.maxLevel as 1 | 2 | 3 | 4} colorScheme="light" theme={{light: ["#e5dcd1", "#d5bba8", "#be8d70", "#a96340", "#813519"]}} labels={{totalCount: "{{count}} contributions in the last year"}} />
+                        <ActivityCalendar data={contributions} blockSize={githubConfig.blockSize} blockMargin={githubConfig.blockMargin} fontSize={githubConfig.fontSize} maxLevel={githubConfig.maxLevel as 1 | 2 | 3 | 4} colorScheme="dark" theme={{dark: ["#3b4140", "#536d51", "#73936c", "#93ad82", "#bed0ad"]}} labels={{totalCount: "{{count}} contributions in the last year"}} />
                     )}
                 </div>
             </section>
