@@ -1,8 +1,6 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { motion } from "framer-motion";
-import SectionContainer from "@/components/section-container";
 import { githubConfig } from "@/data/github";
 
 import { ActivityCalendar } from "react-activity-calendar";
@@ -40,67 +38,15 @@ export default function GitHubSection() {
     }, [fetchContributions]);
 
     return (
-        <SectionContainer className="py-6">
-            <motion.div
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                className="space-y-4"
-            >
-                {/* Contribution Graph */}
-                <a
-                    href={`https://github.com/${githubConfig.username}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block rounded-xl bg-card border border-border/40 p-4 overflow-hidden hover:border-border/80 transition-colors cursor-pointer"
-                >
-                    {loading ? (
-                        <div className="h-28 flex items-center justify-center text-sm text-muted-foreground animate-pulse">
-                            Loading contributions...
-                        </div>
-                    ) : error ? (
-                        <div className="h-28 flex flex-col items-center justify-center gap-2">
-                            <p className="text-sm text-muted-foreground">Unable to load contributions</p>
-                            <a
-                                href={`https://github.com/${githubConfig.username}`}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-xs text-primary hover:underline"
-                            >
-                                View on GitHub →
-                            </a>
-                        </div>
-                    ) : contributions.length === 0 ? (
-                        <div className="h-28 flex flex-col items-center justify-center gap-2">
-                            <p className="text-sm text-muted-foreground">No contribution data available</p>
-                            <a
-                                href={`https://github.com/${githubConfig.username}`}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-xs text-primary hover:underline"
-                            >
-                                View on GitHub →
-                            </a>
-                        </div>
-                    ) : (
-                        <ActivityCalendar
-                            data={contributions}
-                            blockSize={githubConfig.blockSize}
-                            blockMargin={githubConfig.blockMargin}
-                            fontSize={githubConfig.fontSize}
-                            maxLevel={githubConfig.maxLevel as 1 | 2 | 3 | 4}
-                            theme={{
-                                dark: githubConfig.theme.dark,
-                                light: githubConfig.theme.light,
-                            }}
-                            labels={{
-                                totalCount: `{{count}} contributions in the last year`,
-                            }}
-                        />
+        <div className="field-guide field-details">
+            <section className="detail-section" aria-labelledby="github-heading">
+                <div className="detail-heading"><p className="field-kicker">08 / Activity</p><h2 id="github-heading">On <em>GitHub.</em></h2><p>Contributions over the last year.</p><a className="detail-link" href={`https://github.com/${githubConfig.username}`} target="_blank" rel="noopener noreferrer">View GitHub profile ↗</a></div>
+                <div className="github-calendar">
+                    {loading ? <p>Loading contributions…</p> : error ? <p>Unable to load contributions.</p> : contributions.length === 0 ? <p>No contribution data available.</p> : (
+                        <ActivityCalendar data={contributions} blockSize={githubConfig.blockSize} blockMargin={githubConfig.blockMargin} fontSize={githubConfig.fontSize} maxLevel={githubConfig.maxLevel as 1 | 2 | 3 | 4} colorScheme="light" theme={{light: ["#e5dcd1", "#d5bba8", "#be8d70", "#a96340", "#813519"]}} labels={{totalCount: "{{count}} contributions in the last year"}} />
                     )}
-                </a>
-
-            </motion.div>
-        </SectionContainer >
+                </div>
+            </section>
+        </div>
     );
 }

@@ -1,8 +1,10 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 export default function Footer() {
+  const pathname = usePathname();
   const [mounted, setMounted] = useState(false);
   const [currentYear] = useState<number>(new Date().getFullYear());
 
@@ -12,6 +14,10 @@ export default function Footer() {
 
   if (!mounted) {
     return null;
+  }
+
+  if (pathname === "/") {
+    return <footer className="field-guide field-footer"><blockquote>“The only way to do great work is to love what you do.” <cite>— Steve Jobs</cite></blockquote><div><span>Designed &amp; developed by Anubhav Tandon</span><span>© {currentYear}</span><a href="#top">Back to top ↑</a></div></footer>;
   }
 
   return (
@@ -34,7 +40,7 @@ export default function Footer() {
 
           <div className="pl-12 md:pl-16">
             <p className="text-zinc-400 italic text-base md:text-lg leading-relaxed">
-              "The only way to do great work is to love what you do."
+              &quot;The only way to do great work is to love what you do.&quot;
             </p>
             <p className="mt-4 text-zinc-300 font-medium text-sm md:text-base text-right">
               — <em className="text-zinc-200">Steve Jobs</em>
