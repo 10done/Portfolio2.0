@@ -38,7 +38,7 @@ export default function PortfolioIntro() {
       </section>
       <section id="about" className="field-about" aria-labelledby="about-heading">
         <div className="field-about-copy"><p className="field-kicker">A little about me</p><h2 id="about-heading">Engineer.<br /><em>Founder.</em></h2><p className="field-copy">I&apos;m Anubhav, a computer science graduate from IIT Jodhpur. I build AI systems and software that people can use in their day-to-day work.</p><a className="field-text-link" href="#education">Education &amp; achievements ↗</a></div>
-        <div className="field-photos"><Image src="/photos/anubhav-cafe.webp" alt="Anubhav Tandon seated indoors" width={1200} height={1600} sizes="(max-width: 700px) 30vw, 16vw" /><Image src="/photos/anubhav-portrait.webp" alt="Anubhav Tandon outdoors" width={1200} height={1600} sizes="(max-width: 700px) 30vw, 16vw" /><Image src="/photos/anubhav-outdoors.webp" alt="Anubhav Tandon sitting among trees" width={1200} height={1600} sizes="(max-width: 700px) 30vw, 16vw" /></div>
+        <div className="field-photos"><Image src="/photos/anubhav-outdoors.webp" alt="Anubhav Tandon sitting among trees" width={1200} height={1600} sizes="(max-width: 700px) 88vw, 42vw" /></div>
       </section>
     </div>
   );
