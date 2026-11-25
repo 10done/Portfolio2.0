@@ -65,6 +65,8 @@ export default function Navbar() {
     }
   };
 
+  if (pathname === "/") return null;
+
   return (
     <motion.header
       initial={{ y: -100 }}

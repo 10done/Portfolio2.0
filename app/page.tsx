@@ -1,4 +1,4 @@
-import HeroSection from "@/components/sections/hero-section";
+import PortfolioIntro from "@/components/portfolio-intro";
 import GitHubSection from "@/components/sections/github-section";
 import TechStackSection from "@/components/sections/tech-stack-section";
 import ProjectsSection from "@/components/sections/projects-section";
@@ -11,12 +11,12 @@ import FloatingNav from "@/components/floating-nav";
 export default function Home() {
   return (
     <main className="min-h-screen bg-background text-foreground">
-      <HeroSection />
-      <TechStackSection />
+      <PortfolioIntro />
       <ExperienceSection />
+      <EducationSection />
+      <TechStackSection />
       <ProjectsSection />
       <OpenSourceSection />
-      <EducationSection />
       <GitHubSection />
       <ContactSection />
       <FloatingNav />
