@@ -1,11 +1,12 @@
 "use client";
 
 import { Cabinet, Exploded } from "@lucasmarkes/hairline/react";
+import { useState } from "react";
 import { profileData } from "@/data/profile";
 
-function VoiceConsole() {
+function VoiceConsole({ playing }: { playing: boolean }) {
   return (
-    <div className="voice-figure" aria-label="A line drawing of a microphone and voice console" role="img">
+    <div className={`voice-figure ${playing ? "is-playing" : ""}`} aria-label="A line drawing of a microphone and voice console" role="img">
       <svg viewBox="0 0 400 320" fill="none" aria-hidden="true">
         <g stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M48 218 180 147 350 214 218 287Z M48 218v23l170 67 132-71v-23 M218 287v21" />
@@ -21,6 +22,8 @@ function VoiceConsole() {
 }
 
 export default function PortfolioIntro() {
+  const [playing, setPlaying] = useState(true);
+
   return (
     <div className="field-guide">
       <header className="field-nav">
@@ -29,6 +32,7 @@ export default function PortfolioIntro() {
           <a href="#experience">Work</a><a href="#education">Education</a><a href="/projects">Projects</a><a href={profileData.resume} target="_blank" rel="noreferrer">Resume</a><a href="#contact">Contact</a>
         </nav>
       </header>
+      <div className="field-motion"><button type="button" onClick={() => setPlaying(!playing)}>{playing ? "Pause animations" : "Play animations"}</button></div>
       <section id="top" className="field-hero field-grid">
         <div>
           <p className="field-kicker">AI engineer / Founder / IIT Jodhpur CSE</p>
@@ -37,15 +41,15 @@ export default function PortfolioIntro() {
           <p className="field-copy">I build production AI agents, voice interfaces and the infrastructure behind them. B.Tech in Computer Science and Engineering, IIT Jodhpur &apos;26.</p>
           <div className="field-links"><a href="#experience">Explore my work <span>↗</span></a><a href="mailto:anubhavtandon6424@gmail.com">Get in touch <span>↗</span></a></div>
         </div>
-        <div className="field-figure"><Exploded theme="light" aria-label="An application shown in layers; move the pointer to explore" /></div>
+        <div className="field-figure"><Exploded play={playing} theme="light" aria-label="An application shown in layers; move the pointer to explore" /></div>
       </section>
       <section className="field-project field-grid" aria-labelledby="plate8-heading">
         <div><p className="field-kicker">01 / Current work</p><h2 id="plate8-heading">Plate8</h2><p className="field-subtitle">A voice agent for restaurant teams.</p><p className="field-copy">A conversational AI back-of-house agent, built for independent restaurants and small chains.</p><div className="field-facts"><p><strong>3</strong> pilot restaurants</p><p><strong>30%</strong> less food waste at pilots</p></div><a className="field-text-link" href="https://plate8.io" target="_blank" rel="noreferrer">Visit Plate8 ↗</a></div>
-        <VoiceConsole />
+        <VoiceConsole playing={playing} />
       </section>
       <section className="field-project field-grid" aria-labelledby="skyportal-heading">
         <div><p className="field-kicker">02 / Previous work</p><h2 id="skyportal-heading">Skyportal</h2><p className="field-subtitle">Infrastructure for GPU cloud.</p><p className="field-copy">Built backend systems at Skyportal.ai and Oblivus Cloud, a GPU cloud platform acquired by GPUX.</p><div className="field-facts"><p><strong>~25%</strong> lower API latency</p></div><a className="field-text-link" href="#experience">More experience ↗</a></div>
-        <div className="field-figure"><Cabinet theme="light" aria-label="A server rack; move the pointer to explore its blades" /></div>
+        <div className="field-figure"><Cabinet play={playing} theme="light" aria-label="A server rack; move the pointer to explore its blades" /></div>
       </section>
     </div>
   );
